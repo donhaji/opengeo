@@ -61,6 +61,11 @@ By publishing an AI Twin, your organization moves from passive web hosting to ac
 * **[OPENGEO_SPEC.md](OPENGEO_SPEC.md):** The core normative technical specification, outlining routing, metadata schemas, and graph topology.
 * **[opengeo-manifesto-v0.3.0.md](opengeo-manifesto-v0.3.0.md):** The philosophical and strategic rationale behind the AI Twin paradigm, including the conversational accessibility advantages.
 
+## 🤝 Acknowledgements & Inspiration
+
+OpenGEO stands on the shoulders of existing standards in the open-agentic movement:
+* **Jeremy Howard & Answer.AI:** For pioneering the landmark `/llms.txt` proposal in 2024. OpenGEO treats `/llms.txt` as its primary macro-discovery entry point ("the lobby" of your site's AI Twin), extending it with structured, traversable metadata graphs.
+
 ---
 
 ## ⚖️ Dual-License Structure
