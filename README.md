@@ -19,8 +19,7 @@ As AI agents (ChatGPT, Claude, Gemini, Perplexity) become the primary discovery 
 
 **OpenGEO** is a platform-agnostic, decentralized specification for creating an **AI Twin**—a structured, agent-legible mirror of a website's pages, expressed as Markdown documents with flat, typed YAML front-matter, served natively alongside the human-facing site.
 
-By publishing an AI Twin, your organization moves from passive web hosting to active **Generative Experience Optimisation (GEO)**, ensuring that AI models read, reason over, and speak about your products and services with 100% factual accuracy.
-
+By publishing an AI Twin, your organization moves from passive web hosting to active **Generative Experience Optimisation (GEO)**, ensuring that AI models read, reason over, and speak about your products and services with maximum factual fidelity, eliminating source-data ambiguity
 ```
        The Human Web (HTML) <───[ Content Negotiation ]───> The AI Web (Markdown)
        ┌────────────────────┐          (Middleware)          ┌────────────────────┐
