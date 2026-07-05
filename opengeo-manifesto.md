@@ -1,4 +1,4 @@
-# The OpenGeO Manifesto: Publisher Sovereignty in the Agentic Era
+# The OpenGEO Manifesto: Publisher Sovereignty in the Agentic Era
 
 ## The Shift
 
@@ -8,7 +8,7 @@ For three decades, web publishing has centred on human-facing pages: layout, nav
 
 This creates a structural gap. The organisation may know exactly who it is, what it offers, how its services relate, and what context matters. But an AI system must often reconstruct that meaning indirectly.
 
-OpenGeO exists to close that gap.
+OpenGEO exists to close that gap.
 
 ## Semantic Ownership
 
@@ -16,13 +16,13 @@ Every organisation has a practical need and a legitimate interest in owning its 
 
 Just as an organisation owns its domain, brand, and public statements, it should be able to publish a canonical semantic representation of itself for intelligent systems. This does not make the organisation the arbiter of objective truth. It establishes authorship, provenance, and declared meaning.
 
-The core principle of OpenGeO is publisher sovereignty over machine-readable meaning.
+The core principle of OpenGEO is publisher sovereignty over machine-readable meaning.
 
-GEO is the practice. OpenGeO is the open specification.
+GEO is the practice. OpenGEO is the open specification.
 
-## What OpenGeO Provides
+## What OpenGEO Provides
 
-OpenGeO defines a way for publishers to declare organisational meaning at the resource level. A resource may be a product, service, article, location, policy, offer, collection, person, department, or any other meaningful entity the organisation chooses to expose.
+OpenGEO defines a way for publishers to declare organisational meaning at the resource level. A resource may be a product, service, article, location, policy, offer, collection, person, department, or any other meaningful entity the organisation chooses to expose.
 
 The specification separates a canonical semantic model from its projections:
 
@@ -42,9 +42,9 @@ An AI Twin should preserve semantic fidelity to the publisher's source of truth.
 
 ## Boundaries
 
-OpenGeO is intentionally modest. It provides a common semantic foundation; it does not replace downstream trust, ranking, verification, moderation, or safety systems.
+OpenGEO is intentionally modest. It provides a common semantic foundation; it does not replace downstream trust, ranking, verification, moderation, or safety systems.
 
-| OpenGeO Is | OpenGeO Is Not |
+| OpenGEO Is | OpenGEO Is Not |
 | :--- | :--- |
 | An open semantic specification | A proprietary platform API |
 | Publisher-controlled declared meaning | A guarantee of objective truth |
@@ -52,10 +52,10 @@ OpenGeO is intentionally modest. It provides a common semantic foundation; it do
 | A complement to `llms.txt` | A replacement for `llms.txt` |
 | Opt-in by design | A moderation or enforcement system |
 
-Trust, verification, ranking, and policy remain the responsibility of consuming systems, platforms, regulators, and users. OpenGeO makes the publisher's declared meaning easier to find, inspect, compare, and evaluate.
+Trust, verification, ranking, and policy remain the responsibility of consuming systems, platforms, regulators, and users. OpenGEO makes the publisher's declared meaning easier to find, inspect, compare, and evaluate.
 
 ## The Path Forward
 
 The internet is becoming an environment of active interpretation. Organisations need more than pages that look right to humans; they need semantic declarations that intelligent systems can understand faithfully.
 
-OpenGeO is a step toward that future: an open, publisher-owned way to say what an organisation means.
+OpenGEO is a step toward that future: an open, publisher-owned way to say what an organisation means.
