@@ -1,86 +1,61 @@
-# The OpenGEO Manifesto: Publisher Sovereignty in the Agentic Era
+# The OpenGeO Manifesto: Publisher Sovereignty in the Agentic Era
 
-## The Structural Friction
-The web was designed primarily for human interaction, while contemporary artificial intelligence systems attempt to infer machine meaning from these human-centric visual layouts. This is a fundamental structural mismatch, not a limitation of any individual model. For three decades, web engineering focused on optimizing pixels, rendering complex Document Object Model (DOM) hierarchies, and capturing human attention.
+## The Shift
 
-Today, the interface of the internet is shifting. Autonomous systems, Large Language Models (LLMs), and intelligent agents serve as the primary gatekeepers between organizations and their audiences. These systems do not navigate using visual screens; they process information via attention heads.
+AI is no longer merely indexing content; it is interpreting meaning. The web needs a way for organisations to publish that meaning directly.
 
-Consequently, artificial intelligence is shifting from indexing documents to interpreting meaning. The web requires a standardized method for organizations to publish this meaning directly.
+For three decades, web publishing has centred on human-facing pages: layout, navigation, visual hierarchy, interaction, conversion, and brand expression through screens. That work remains essential. But intelligent systems do not primarily experience organisations through screens. They infer meaning from text, metadata, retrieval systems, APIs, search results, screenshots, scraped pages, and platform-specific feeds.
 
-Forcing intelligent systems to scrape human-optimized layouts to reconstruct underlying data is a brittle, inefficient, and unreliable approach. There is currently no vendor-neutral, canonical semantic representation that organizations can publish directly to intelligent systems.
+This creates a structural gap. The organisation may know exactly who it is, what it offers, how its services relate, and what context matters. But an AI system must often reconstruct that meaning indirectly.
 
-While HTML is technically legible to automated parsers, legibility is not the goal. **Canonical, publisher-owned semantic meaning is.**
+OpenGeO exists to close that gap.
 
-This structural gap leads directly to:
-* **Semantic Hallucinations:** Inconsistent or erroneous interpretations of organizational facts, services, products, and policies.
-* **Loss of Context:** Crucial relational mappings, operational rules, and brand safeguards are lost in translation.
-* **Ecosystem Lock-In:** Proprietary platforms have begun building closed commerce databases and platform-specific API ecosystems. Organizations are increasingly forced to syndicate their data across multiple closed walls, relinquishing control over their canonical semantic information.
+## Semantic Ownership
 
----
+Every organisation has a practical need and a legitimate interest in owning its canonical machine-readable meaning.
 
-## The Principle of Semantic Ownership
-Every organization—whether commercial, academic, governmental, or non-profit—possesses a fundamental right and operational imperative to **own and publish its canonical semantic representation**.
+Just as an organisation owns its domain, brand, and public statements, it should be able to publish a canonical semantic representation of itself for intelligent systems. This does not make the organisation the arbiter of objective truth. It establishes authorship, provenance, and declared meaning.
 
-Just as an organization owns its trademark and domain, it must maintain sovereign control over the canonical record of its identity, operations, and offerings within the machine economy. This is **Semantic Ownership**.
+The core principle of OpenGeO is publisher sovereignty over machine-readable meaning.
 
-The core directive of the OpenGEO project is **publisher sovereignty over machine-readable meaning**.
+GEO is the practice. OpenGeO is the open specification.
 
-To establish this sovereignty, OpenGEO provides an open, platform-agnostic specification for publishing canonical organizational meaning directly to intelligent systems.
+## What OpenGeO Provides
 
-**GEO is the practice. OpenGEO is the open specification.**
+OpenGeO defines a way for publishers to declare organisational meaning at the resource level. A resource may be a product, service, article, location, policy, offer, collection, person, department, or any other meaningful entity the organisation chooses to expose.
 
----
+The specification separates a canonical semantic model from its projections:
 
-## The Four-Layer Architecture of OpenGEO
-To isolate stable organizational meaning from the rapid evolution of technology and syntax, OpenGEO is structured into four distinct layers:
+- HTML remains the human-facing projection.
+- AI Twin documents provide a machine-facing reference projection.
+- JSON, MCP, API, or other forms may be generated where useful.
 
-### Layer 1: The Semantic Model
-The abstract, durable conceptual representation of an organization's truth. This layer defines entities, relationships, context, intent, provenance, and inheritance patterns.
+Markdown with YAML front matter is the first reference representation because it is simple, inspectable, authorable, and easy for current language models to consume. It is not the whole idea. The durable idea is the canonical semantic contract.
 
-### Layer 2: Representations
-The serialization of the semantic model into machine-readable formats. While Markdown, YAML, and PKP serve as reference implementations for contemporary LLMs, the underlying semantic model is designed to compile into JSON-LD, Model Context Protocol (MCP) schemas, or future syntaxes without loss of semantic integrity.
+## The AI Twin
 
-### Layer 3: Discovery
-The predictable paths through which automated systems locate canonical meaning, including domain-root files (such as `geo.txt` or `llms.txt`) and HTML linking standards (`<link rel="alternate">`).
+An AI Twin is a machine-facing projection of a human-facing resource or organisational entity.
 
-### Layer 4: Consumption
-The downstream consumers of OpenGEO data, including LLMs, autonomous agents, browsers, search engines, and real-time integration servers.
+It may sit beside a web page, collection, service, location, policy, or brand-level resource. It gives intelligent systems a clean way to understand the publisher's declared facts, relationships, context, and intent without forcing those systems to infer everything from page layout.
 
----
+An AI Twin should preserve semantic fidelity to the publisher's source of truth. It may differ from the human page in format and structure. It should not contradict the facts the publisher is declaring elsewhere.
 
-## The AI Twin Paradigm
-The counterpart to a human-facing web presence is the **AI Twin**. An organization may publish one or more AI Twins to provide canonical semantic representations of its resources.
+## Boundaries
 
-While the human-facing layer prioritizes visual hierarchy and aesthetic flow, the AI Twin layer prioritizes state predictability, structural consistency, and token efficiency. 
+OpenGeO is intentionally modest. It provides a common semantic foundation; it does not replace downstream trust, ranking, verification, moderation, or safety systems.
 
-Separating visual representation from underlying semantic meaning preserves the aesthetic richness of the web for humans, while unlocking absolute precision for autonomous systems.
-
----
-
-## Defining the Boundaries: What OpenGEO Is vs. Is Not
-A functional specification must establish clear operational boundaries. OpenGEO is designed with humility; it does not attempt to replace platform trust systems, safety mechanisms, or human judgment. It provides a common semantic foundation.
-
-| OpenGEO Is | OpenGEO Is Not |
+| OpenGeO Is | OpenGeO Is Not |
 | :--- | :--- |
-| **An open semantic specification** | A proprietary platform API or closed database |
-| **Publisher-controlled semantics** | Platform-intermediated data scraping |
-| **Resource-level representations** | Strict page-level or HTML-dependent twins |
-| **A semantic contract of declared meaning** | A ranking or search engine optimization (SEO) algorithm |
-| **Provenance, authorship, and intent** | An arbiter of objective truth or real-time honesty |
+| An open semantic specification | A proprietary platform API |
+| Publisher-controlled declared meaning | A guarantee of objective truth |
+| A resource-level semantic contract | An SEO ranking algorithm |
+| A complement to `llms.txt` | A replacement for `llms.txt` |
+| Opt-in by design | A moderation or enforcement system |
 
-### Boundary Explanations:
-*   **Decentralization:** OpenGEO is an open specification because canonical organizational meaning should not be locked within proprietary databases or closed platforms.
-*   **Search Engine Neutrality:** OpenGEO is not an SEO tool. It describes semantic meaning with high fidelity; it does not dictate or manipulate search ranking algorithms.
-*   **Authorship over Objective Truth:** OpenGEO does not establish objective truth; it establishes authorship and declared meaning. If an organization states a price or policy, the specification conveys that declaration with high integrity. Downstream verifications remain the responsibility of consuming agents and platforms.
-*   **Complementarity:** OpenGEO complements discovery protocols like `llms.txt`. While discovery protocols locate resources, OpenGEO provides the deep, inherited semantic meaning once those resources are accessed.
-
-OpenGEO provides a common semantic foundation. Trust, verification, ranking, and policy remain the responsibility of AI systems, platforms, regulators, and users.
-
----
+Trust, verification, ranking, and policy remain the responsibility of consuming systems, platforms, regulators, and users. OpenGeO makes the publisher's declared meaning easier to find, inspect, compare, and evaluate.
 
 ## The Path Forward
-The internet is transitioning from a web of static documents to an economy of active agents. 
 
-By separating the visual from the semantic, the web remains a beautiful interface for humans, while becoming a highly precise environment for machine intelligence.
+The internet is becoming an environment of active interpretation. Organisations need more than pages that look right to humans; they need semantic declarations that intelligent systems can understand faithfully.
 
-**Build for the machine. Prosper for the human.**
+OpenGeO is a step toward that future: an open, publisher-owned way to say what an organisation means.
