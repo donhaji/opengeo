@@ -58,7 +58,7 @@ By publishing an AI Twin, your organization moves from passive web hosting to ac
 ## 📝 Document Index
 
 * **[OPENGEO_SPEC.md](OPENGEO_SPEC.md):** The core normative technical specification, outlining routing, metadata schemas, and graph topology.
-* **[opengeo-manifesto-v0.3.0.md](opengeo-manifesto-v0.3.0.md):** The philosophical and strategic rationale behind the AI Twin paradigm, including the conversational accessibility advantages.
+* **[opengeo-manifesto.md](opengeo-manifesto.md):** The philosophical and strategic rationale behind the AI Twin paradigm, including the conversational accessibility advantages.
 
 ## 🤝 Acknowledgements & Inspiration
 
