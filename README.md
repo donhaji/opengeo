@@ -1,185 +1,124 @@
 # OpenGEO
 
-> An open semantic specification for publishing canonical organisational meaning to intelligent systems.
+> An open specification for publisher-owned semantic and contextual declarations for intelligent systems.
 
-OpenGEO defines a publisher-controlled semantic layer for the agentic web. It allows organisations to expose canonical meaning about their identity, resources, products, services, policies, offers, and relationships in a form that AI systems can discover, traverse, compare, and evaluate.
+OpenGEO allows publishers to declare, at the resource level, what an organisation, product, service, policy, location, article, offer, collection, or other entity is, and how it should be understood by intelligent systems.
 
 GEO is the practice. OpenGEO is the specification.
 
-OpenGEO does not replace the human web. It defines an AI-legible semantic projection beside it.
+OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the reference implementation of OpenGEO, commonly expressed as Markdown with YAML front matter. The specification owns semantics and context, not syntax.
 
-## Core Thesis
+## Core Principle
 
-AI systems are no longer merely indexing content; they are interpreting meaning. The web therefore needs a way for organisations to publish that meaning directly, under their own domain, with clear provenance and stable resource-level structure.
+OpenGEO defines what the publisher knows better than the runtime.
 
-OpenGEO provides that semantic contract.
+Discovery mechanisms may find OpenGEO resources. Runtimes may interpret, rank, reason, retrieve, render, or act on them. OpenGEO defines the publisher-owned semantic and contextual declarations that sit between those layers.
 
-The central architectural principle is:
+## Four-Layer Architecture
 
-> One canonical semantic model. Multiple projections.
-
-Those projections may include:
-
-- HTML for humans
-- AI Twin Markdown files for LLM-native consumption
-- JSON-LD or schema.org-aligned forms for structured-data ecosystems
-- `geo.txt` for participation, discovery, and default context
-- ARD `ai-catalog.json` entries for agentic resource discovery
-- MCP or API endpoints for live tools and volatile data
+| Layer | Purpose | Question answered | OpenGEO role |
+| :--- | :--- | :--- | :--- |
+| Discovery | Locating participation and resources | Where is the publisher's semantic representation? | Compatible with discovery mechanisms. |
+| Semantic | Declared facts and relationships | What is this resource? | Normative. |
+| Context | Declared interpretation envelope | How should this resource be understood? | Normative. |
+| Runtime | Reasoning, retrieval, ranking, tool use, rendering, safety, policy | What should happen now? | Out of scope; informed by OpenGEO. |
 
 ## OpenGEO Is
 
-- An open semantic specification
-- A publisher-controlled canonical representation
-- A resource-level semantic declaration model
-- A complement to `llms.txt`, ARD, JSON-LD, and MCP
+- An open specification for semantic and contextual declarations
+- Publisher-owned
+- Resource-level
+- Implementation-agnostic
+- Runtime-independent
+- Compatible with ARD, `llms.txt`, MCP discovery, APIs, and other discovery or runtime systems
 - Opt-in by design
 
 ## OpenGEO Is Not
 
+- A prompt format
+- An agent framework
+- An MCP replacement
+- A runtime API
 - An SEO ranking algorithm
 - A moderation system
 - A proprietary merchant API
-- A replacement for `llms.txt`
-- A replacement for ARD
-- A replacement for JSON-LD or schema.org
+- A requirement to use JSON-LD
 - A guarantee of objective truth
 
-OpenGEO establishes declared meaning, provenance, and equivalence expectations. Ranking, recommendation, verification, moderation, and trust scoring remain the responsibility of consuming systems.
+## Context Architecture
 
-## AI Twin Reference Profile
+The `context.*` namespace is a first-class part of OpenGEO.
 
-The AI Twin is the first reference projection of an OpenGEO semantic model.
+Context declarations define the publisher's interpretation envelope around a resource. They can describe tone, intent, sensitivity, guidance, provenance, volatility, persona, profile, or domain-specific context.
 
-For a human-facing resource, a publisher may expose a colocated machine-readable twin, commonly as:
+Context is declarative. It informs intelligent systems while preserving runtime autonomy.
+
+Example:
+
+```yaml
+context.intent: support
+context.tone: calm, compassionate, non-commercial
+context.sensitivity: high
+context.guidance: Prioritise service information, eligibility, human handoff, and safety qualifiers.
+```
+
+## Semantic Twin Reference Implementation
+
+A Semantic Twin is the reference implementation of OpenGEO.
+
+For a human-facing resource, a publisher may expose a colocated machine-readable twin:
 
 ```text
 https://example.com/products/example-product
 https://example.com/products/example-product.md
 ```
 
-An AI Twin uses:
+A Semantic Twin may use:
 
-- YAML front matter for typed facts and graph relationships
-- Markdown body content for clean LLM-readable explanatory context
-- flat `context.*` keys for interpretation guidance
+- YAML front matter for semantic and context declarations
+- Markdown body content for LLM-readable explanatory context
 - absolute URLs for graph traversal
-- provenance fields such as `source_url` and `updated`
+- canonical media references
+- freshness metadata for volatile fields
 
-The Markdown + YAML profile is a reference implementation, not the full scope of OpenGEO. The same semantic model may be projected into JSON-LD, ARD catalogs, MCP tool descriptions, APIs, or future formats.
-
-## Resource Graph
-
-OpenGEO resources form a traversable graph, not a page tree.
-
-Typical graph edges include:
-
-- `catalogued_in`
-- `contains`
-- `related_to`
-- `related_advice`
-- `available_at`
-- `offered_by`
-- `has_policy`
-- `same_as`
-
-Edges should use absolute URLs so agents can move from a product detail twin to a listing twin, advice page, offer, policy, location, or live tool without scraping navigation menus or executing client-side JavaScript.
-
-Example:
-
-```yaml
-opengeo: 0.1
-type: product
-id: https://example.com/products/example-product
-canonical_url: https://example.com/products/example-product
-name: Example Product
-description: A publisher-declared product description.
-catalogued_in:
-  - https://example.com/categories/example-category.md
-related_to:
-  - https://example.com/advice/example-guide.md
-has_policy:
-  - https://example.com/policies/returns.md
-updated: 2026-07-05
-```
+Other representations may be generated from the same semantic model, including JSON, API responses, MCP responses, graph stores, or future serialisations.
 
 ## Discovery
 
-OpenGEO supports multiple discovery paths.
+OpenGEO is compatible with multiple discovery mechanisms.
 
-### HTML alternate links
+### HTML Alternate Links
 
-Where a human-facing page has a colocated Semantic Twin, the page should advertise it with a standard alternate link:
+The primary page-level discovery mechanism is the standard HTML alternate link:
 
 ```html
 <link rel="alternate" type="text/markdown" href="https://example.com/products/example-product.md">
 ```
 
-This is the direct resource-level equivalence signal between the human page and its machine-facing twin.
-
 ### `geo.txt`
 
-`/.well-known/geo.txt` declares OpenGEO participation, site-wide defaults, supported representations, and optional integration endpoints.
+`/.well-known/geo.txt` is the site-wide OpenGEO participation declaration and default-context file.
 
 ### `llms.txt`
 
-OpenGEO complements `llms.txt`. `llms.txt` can act as an orientation or root index, while OpenGEO provides resource-level semantic declarations and graph traversal.
+OpenGEO complements `llms.txt`, which can act as an orientation or root index for language models.
 
-### ARD
+### ARD and MCP Discovery
 
-OpenGEO is compatible with Agentic Resource Discovery (ARD). ARD defines a discovery layer for AI-facing capabilities using domain-hosted catalogs such as `ai-catalog.json` and federated registries. An ARD catalog can point agents to OpenGEO resources, AI Twin bundles, `geo.txt`, MCP servers, APIs, or other machine-facing assets.
+Agentic Resource Discovery, MCP discovery, `.well-known` resources, registries, and other mechanisms may point to OpenGEO resources.
 
-In this division of responsibility:
-
-- ARD answers: where are the available AI-facing resources and how can they be verified?
-- OpenGEO answers: what canonical organisational meaning do those resources declare?
-- MCP answers: which live tools or contextual operations can an agent invoke?
-
-## JSON-LD and Schema.org
-
-OpenGEO is complementary to JSON-LD and schema.org.
-
-JSON-LD remains useful for conventional structured-data consumers, search engines, and schema.org-aligned ecosystems. OpenGEO focuses on LLM-legible semantic declarations, resource graph traversal, contextual guidance, and publisher-owned AI Twin projections.
-
-An implementation may generate both:
-
-- JSON-LD embedded in HTML for conventional structured-data systems
-- OpenGEO AI Twins for LLM-native interpretation and traversal
-
-The goal is semantic equivalence across projections, not format exclusivity.
-
-## Equivalence and Trust
-
-OpenGEO declarations should preserve factual equivalence with the publisher's source of truth.
-
-The AI Twin may differ from the human-facing page in structure, wording, and format. It should not contradict the facts that the publisher declares elsewhere. This matters because AI systems can use semantic consistency, provenance, freshness, and cross-projection equivalence as signals when deciding how much confidence to place in a publisher's machine-readable representation.
-
-OpenGEO does not guarantee truth. It makes declared meaning explicit, inspectable, timestamped, traversable, and easier for consuming systems to evaluate.
-
-## Circle 1 Scope
-
-The first implementation circle focuses on:
-
-- AI visibility assessment reports
-- AI Twin generation
-- OpenGEO specification v0.1
-- `geo.txt` discovery and site-wide default context
-- brand and organisation semantic clarity
-- optional MCP integrations
-- AI test harnesses for interpretive drift
+These systems own discovery and capability handshaking. OpenGEO owns semantic and contextual declarations.
 
 ## Document Index
 
 - [OPENGEO_SPEC.md](OPENGEO_SPEC.md): The working v0.1 technical specification.
-- [opengeo-manifesto.md](opengeo-manifesto.md): The strategic rationale for publisher-owned semantic meaning.
+- [opengeo-manifesto.md](opengeo-manifesto.md): The strategic rationale for publisher-owned semantic and contextual declarations.
 - [docs/index.html](docs/index.html): GitHub Pages landing page with an architecture diagram.
 - [LICENSE](LICENSE): MIT license for reference implementation code.
 
 ## Acknowledgements
 
 OpenGEO builds in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's `llms.txt` proposal.
-
-OpenGEO also aligns with emerging agentic discovery work such as Google's Agentic Resource Discovery specification, while remaining a distinct semantic layer focused on canonical organisational meaning rather than capability discovery.
 
 ## Licence
 

@@ -2,60 +2,82 @@
 
 ## The Shift
 
-AI is no longer merely indexing content; it is interpreting meaning. The web needs a way for organisations to publish that meaning directly.
+AI is no longer merely indexing content; it is interpreting meaning.
 
-For three decades, web publishing has centred on human-facing pages: layout, navigation, visual hierarchy, interaction, conversion, and brand expression through screens. That work remains essential. But intelligent systems do not primarily experience organisations through screens. They infer meaning from text, metadata, retrieval systems, APIs, search results, screenshots, scraped pages, and platform-specific feeds.
+For three decades, web publishing has centred on human-facing pages: layout, navigation, visual hierarchy, interaction, conversion, and brand expression through screens. That work remains essential. But intelligent systems do not primarily experience organisations through screens. They infer meaning from text, metadata, retrieval systems, APIs, search results, screenshots, scraped pages, platform-specific feeds, and generated summaries.
 
-This creates a structural gap. The organisation may know exactly who it is, what it offers, how its services relate, and what context matters. But an AI system must often reconstruct that meaning indirectly.
+This creates a structural gap. An organisation may know exactly who it is, what it offers, how its services relate, what context matters, and where sensitive interpretation is required. But an AI system must often reconstruct that meaning indirectly.
 
-OpenGEO exists to close that gap.
+OpenGEO exists to reduce that unnecessary inference.
 
-## Semantic Ownership
+## Semantic and Contextual Ownership
 
-Every organisation has a practical need and a legitimate interest in owning its canonical machine-readable meaning.
+Every organisation has a practical need and legitimate interest in owning its canonical machine-readable meaning and context.
 
-Just as an organisation owns its domain, brand, and public statements, it should be able to publish a canonical semantic representation of itself for intelligent systems. This does not make the organisation the arbiter of objective truth. It establishes authorship, provenance, and declared meaning.
+Just as an organisation owns its domain, brand, and public statements, it should be able to publish declared semantic and contextual representations for intelligent systems.
 
-The core principle of OpenGEO is publisher sovereignty over machine-readable meaning.
+This does not make the organisation the arbiter of objective truth. It establishes authorship, provenance, declared meaning, and declared context.
+
+The core principle of OpenGEO is publisher sovereignty over machine-readable meaning and interpretation context.
 
 GEO is the practice. OpenGEO is the open specification.
 
 ## What OpenGEO Provides
 
-OpenGEO defines a way for publishers to declare organisational meaning at the resource level. A resource may be a product, service, article, location, policy, offer, collection, person, department, or any other meaningful entity the organisation chooses to expose.
+OpenGEO defines a way for publishers to declare organisational meaning and interpretation context at the resource level.
 
-The specification separates a canonical semantic model from its projections:
+A resource may be a product, service, article, location, policy, offer, collection, person, department, organisation, or any other meaningful entity the publisher chooses to expose.
 
-- HTML remains the human-facing projection.
-- AI Twin documents provide a machine-facing reference projection.
-- JSON, MCP, API, or other forms may be generated where useful.
+OpenGEO separates four concerns:
 
-Markdown with YAML front matter is the first reference representation because it is simple, inspectable, authorable, and easy for current language models to consume. It is not the whole idea. The durable idea is the canonical semantic contract.
+- **Discovery:** how intelligent systems find the publisher's semantic representation.
+- **Semantics:** what the resource is.
+- **Context:** how the resource should be understood.
+- **Runtime:** what an AI system does with that information.
 
-## The AI Twin
+OpenGEO defines the semantic and context layers. Discovery mechanisms and runtime systems remain free to evolve.
 
-An AI Twin is a machine-facing projection of a human-facing resource or organisational entity.
+## Semantic Twins
 
-It may sit beside a web page, collection, service, location, policy, or brand-level resource. It gives intelligent systems a clean way to understand the publisher's declared facts, relationships, context, and intent without forcing those systems to infer everything from page layout.
+A Semantic Twin is the reference implementation of OpenGEO.
 
-An AI Twin should preserve semantic fidelity to the publisher's source of truth. It may differ from the human page in format and structure. It should not contradict the facts the publisher is declaring elsewhere.
+It is a machine-facing projection of a resource, commonly represented as Markdown with YAML front matter. It can sit beside a web page, collection, service, location, policy, product, or brand-level resource.
+
+The Semantic Twin is not the specification itself. It is a practical way to publish OpenGEO declarations today.
+
+OpenGEO owns semantics and context, not syntax.
+
+## Context Architecture
+
+The primary innovation of OpenGEO is the Context Layer.
+
+Publishers do not only need to declare facts. They also need to declare interpretation context: tone, intent, sensitivity, guidance, provenance, volatility, persona, and escalation context.
+
+The `context.*` namespace provides a coherent way to publish these declarations.
+
+Context is not a prompt and not a command. It informs intelligent systems while preserving runtime autonomy. It helps reduce unnecessary inference by telling the system what the publisher is uniquely qualified to know.
 
 ## Boundaries
 
-OpenGEO is intentionally modest. It provides a common semantic foundation; it does not replace downstream trust, ranking, verification, moderation, or safety systems.
+OpenGEO is intentionally modest. It provides a common semantic and contextual foundation; it does not replace downstream trust, ranking, verification, moderation, safety, or runtime policy.
 
 | OpenGEO Is | OpenGEO Is Not |
 | :--- | :--- |
-| An open semantic specification | A proprietary platform API |
+| An open semantic and contextual specification | A proprietary platform API |
 | Publisher-controlled declared meaning | A guarantee of objective truth |
-| A resource-level semantic contract | An SEO ranking algorithm |
-| A complement to `llms.txt` | A replacement for `llms.txt` |
+| Publisher-controlled interpretation context | A prompt format |
+| A resource-level declaration model | An agent framework |
+| A complement to discovery systems | A replacement for ARD, MCP, or `llms.txt` |
 | Opt-in by design | A moderation or enforcement system |
 
-Trust, verification, ranking, and policy remain the responsibility of consuming systems, platforms, regulators, and users. OpenGEO makes the publisher's declared meaning easier to find, inspect, compare, and evaluate.
+Trust, verification, ranking, and policy remain the responsibility of consuming systems, platforms, regulators, and users.
+
+OpenGEO makes the publisher's declared meaning and context easier to find, inspect, compare, and evaluate.
 
 ## The Path Forward
 
-The internet is becoming an environment of active interpretation. Organisations need more than pages that look right to humans; they need semantic declarations that intelligent systems can understand faithfully.
+The internet is becoming an environment of active interpretation.
 
-OpenGEO is a step toward that future: an open, publisher-owned way to say what an organisation means.
+Organisations need more than pages that look right to humans. They need publisher-owned semantic and contextual declarations that intelligent systems can understand without reverse-engineering the organisation from fragments.
+
+OpenGEO is a step toward that future: an open, publisher-owned way to declare what a resource is and how it should be understood.
