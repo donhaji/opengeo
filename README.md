@@ -10,7 +10,7 @@ OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the refere
 
 ## Core Principle
 
-OpenGEO defines what the publisher knows better than the runtime.
+> **OpenGEO defines what the publisher knows better than the runtime.**
 
 Discovery mechanisms may find OpenGEO resources. Runtimes may interpret, rank, reason, retrieve, render, or act on them. OpenGEO defines the publisher-owned semantic and contextual declarations that sit between those layers.
 

@@ -22,6 +22,20 @@ The core principle of OpenGEO is publisher sovereignty over machine-readable mea
 
 GEO is the practice. OpenGEO is the open specification.
 
+## The Publisher-Runtime Boundary
+
+OpenGEO begins with a boundary.
+
+Some things are best handled by a runtime: ranking, reasoning, retrieval, tool selection, safety enforcement, rendering, and response generation.
+
+Other things are known best by the publisher: identity, provenance, canonical resources, relationships, sensitivity, intended context, and the meaning of its own products, services, policies, and support journeys.
+
+OpenGEO exists for the second category.
+
+> OpenGEO defines what the publisher knows better than the runtime.
+
+This boundary matters because intelligent systems should not be forced to infer publisher-owned meaning from fragments when the publisher can declare it directly. The purpose of OpenGEO is not to control runtime behaviour. It is to reduce unnecessary inference before runtime interpretation begins.
+
 ## What OpenGEO Provides
 
 OpenGEO defines a way for publishers to declare organisational meaning and interpretation context at the resource level.

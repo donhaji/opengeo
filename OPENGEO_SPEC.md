@@ -23,7 +23,7 @@ OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the refere
 
 The specification is based on one architectural principle:
 
-> OpenGEO defines what the publisher knows better than the runtime.
+> **OpenGEO defines what the publisher knows better than the runtime.**
 
 Discovery mechanisms may find OpenGEO resources. Runtimes may interpret, rank, reason, retrieve, render, or act on them. OpenGEO itself defines the publisher-owned semantic and contextual declarations that sit between those two layers.
 
@@ -268,7 +268,7 @@ OpenGEO may declare timestamped values and freshness metadata:
 ```yaml
 availability: in_stock
 availability_updated: 2026-07-05T09:30:00Z
-availability_fresh_for: PT6H
+availability_basis: last_published_snapshot
 ```
 
 This lets a runtime decide whether the value is usable, stale, or needs confirmation. OpenGEO v0.1 does not require inline bindings from static fields to live tools.
@@ -372,7 +372,7 @@ currency: GBP
 price: 12.99
 availability: in_stock
 availability_updated: 2026-07-05T09:30:00Z
-availability_fresh_for: PT6H
+availability_basis: last_published_snapshot
 primary_image: https://cdn.example.com/products/example-product-front.jpg
 image_alt: Example Product front pack
 appears_in:
@@ -513,23 +513,7 @@ If a publisher makes false, misleading, stale, or contradictory declarations, do
 
 ---
 
-## 10. Conformance Levels
-
-OpenGEO v0.1 defines lightweight conformance levels.
-
-| Level | Name | Requirement |
-| :--- | :--- | :--- |
-| 0 | Declared | Site publishes OpenGEO participation, typically via `geo.txt`. |
-| 1 | Discoverable | At least one OpenGEO resource is discoverable through alternate links, `geo.txt`, `llms.txt`, ARD, or another mechanism. |
-| 2 | Semantic | At least one resource carries required semantic declarations. |
-| 3 | Contextual | Resources carry `context.*` declarations where interpretation materially matters. |
-| 4 | Graph | Resources declare relationships to other resources using absolute URLs. |
-| 5 | Fresh | Volatile fields carry freshness metadata. |
-| 6 | Tested | The publisher evaluates whether consuming systems preserve declared meaning and context. |
-
----
-
-## 11. Acknowledgements
+## 10. Acknowledgements
 
 OpenGEO builds in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's `llms.txt` proposal.
 
@@ -537,7 +521,7 @@ OpenGEO treats `llms.txt` as a complementary orientation and root-index conventi
 
 ---
 
-## 12. Versioning and Governance
+## 11. Versioning and Governance
 
 This document is a working draft of OpenGEO v0.1.
 
@@ -545,7 +529,7 @@ The specification is intended to evolve as an open, community-reviewable standar
 
 ---
 
-## 13. Licence
+## 12. Licence
 
 This specification document is published under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence, with attribution to Zahid Saleem.
 
