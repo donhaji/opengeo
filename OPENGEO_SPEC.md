@@ -51,6 +51,8 @@ OpenGEO gives publishers a way to declare semantic meaning and interpretation co
 
 OpenGEO is organised around four layers. The specification defines the semantic and context layers, while remaining compatible with discovery and execution ecosystems.
 
+The architectural model is **DSCE 🎲: Discovery, Semantic, Context, Execution**.
+
 | Layer | Purpose | Question answered | OpenGEO role |
 | :--- | :--- | :--- | :--- |
 | Discovery | Locating participation and resources | Where is the representation? | Declarative and mechanism-compatible. |
