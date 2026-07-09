@@ -9,7 +9,7 @@
 
 ## Changelog
 
-**v0.1 (2026-07-05)** - Rescoped working draft. Defines OpenGEO as an open specification for publisher-owned semantic and contextual declarations for intelligent systems. Separates the architecture into discovery, semantic, context, and runtime layers. Positions the Semantic Twin as the reference implementation, not the specification itself.
+**v0.1 (2026-07-05)** - Rescoped working draft. Defines OpenGEO as an open specification for publisher-owned semantic and contextual declarations for intelligent systems. Separates the architecture into discovery, semantic, context, and execution layers. Positions the Semantic Twin as the reference implementation, not the specification itself.
 
 ---
 
@@ -23,9 +23,9 @@ OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the refere
 
 The specification is based on one architectural principle:
 
-> **OpenGEO defines what the publisher knows better than the runtime.**
+> **OpenGEO defines what the publisher knows better than the execution surface.**
 
-Discovery mechanisms may find OpenGEO resources. Runtimes may interpret, rank, reason, retrieve, render, or act on them. OpenGEO itself defines the publisher-owned semantic and contextual declarations that sit between those two layers.
+Discovery mechanisms may find OpenGEO resources. Execution surfaces may interpret, rank, reason, retrieve, render, or act on them. OpenGEO itself defines the publisher-owned semantic and contextual declarations that sit between discovery and execution.
 
 ---
 
@@ -49,18 +49,27 @@ OpenGEO gives publishers a way to declare semantic meaning and interpretation co
 
 ## 2. Architectural Layers
 
-OpenGEO is organised around four layers. The specification defines the semantic and context layers, while remaining compatible with discovery and runtime ecosystems.
+OpenGEO is organised around four layers. The specification defines the semantic and context layers, while remaining compatible with discovery and execution ecosystems.
 
 | Layer | Purpose | Question answered | OpenGEO role |
 | :--- | :--- | :--- | :--- |
-| Discovery | Locating participation and resources | Where is the publisher's semantic representation? | Compatible with, but not limited to, discovery mechanisms. |
+| Discovery | Locating participation and resources | Where is the representation? | Declarative and mechanism-compatible. |
 | Semantic | Declared facts and relationships | What is this resource? | Normative. |
 | Context | Declared interpretation envelope | How should this resource be understood? | Normative. |
-| Runtime | Reasoning, retrieval, ranking, tool use, rendering, safety, policy | What should happen now? | Out of scope; informed by OpenGEO. |
+| Execution | Reasoning, retrieval, ranking, tool use, rendering, safety, policy, action | What happens now? | Out of scope; informed by OpenGEO. |
+
+The same layers can be read from a practical assessment perspective:
+
+| Layer | Core question | Practical assessment question |
+| :--- | :--- | :--- |
+| Discovery | Where is the representation? | Can this engine find it? |
+| Semantic | What is this resource? | Does this engine understand the declared facts? |
+| Context | How should this resource be understood? | Does this engine preserve the declared intent, tone, and guidance? |
+| Execution | What happens now? | What does this engine actually do with it? |
 
 ### 2.1 Discovery Layer
 
-The discovery layer helps intelligent systems find OpenGEO participation and resources.
+The discovery layer helps intelligent systems find the appropriate semantic and contextual representation for a resource.
 
 Examples include:
 
@@ -72,6 +81,13 @@ Examples include:
 - future `.well-known`, registry, or platform discovery mechanisms.
 
 Discovery is independent from the semantic model. Discovery mechanisms point to OpenGEO declarations; they do not define the meaning of those declarations.
+
+There are two useful views of discovery:
+
+- **Spec view:** discovery is declarative and mechanism-compatible. OpenGEO can be reached through HTML alternate links, `geo.txt`, `llms.txt`, ARD, MCP discovery, `.well-known` resources, registries, APIs, or future mechanisms.
+- **Assessment view:** discovery is engine-relative and observable. The practical question is whether a given engine can discover the right semantic and contextual representation through the mechanisms it supports.
+
+In assessment, discovery is therefore not only "does a `geo.txt`, ARD, or `llms.txt` file exist?" The assessment asks: **which engines can see which layer?**
 
 ### 2.2 Semantic Layer
 
@@ -112,11 +128,11 @@ Examples include:
 
 This layer answers: **how should this resource be understood?**
 
-Context declarations reduce unnecessary inference while preserving runtime autonomy. They are not prompts, commands, or enforcement rules. They are publisher-authored context that intelligent systems may use when interpreting a resource.
+Context declarations reduce unnecessary inference while preserving execution autonomy. They are not prompts, commands, or enforcement rules. They are publisher-authored context that intelligent systems may use when interpreting a resource.
 
-### 2.4 Runtime Layer
+### 2.4 Execution Layer
 
-The runtime layer is everything performed by AI systems and agent frameworks.
+The execution layer is everything performed by AI systems, agent frameworks, tools, assistants, and platform surfaces after discovery, semantics, and context are available.
 
 Examples include:
 
@@ -127,14 +143,15 @@ Examples include:
 - tool selection;
 - agent construction;
 - MCP execution;
+- A2A coordination;
 - safety enforcement;
 - platform policy;
 - rendering;
 - transaction flow.
 
-This layer answers: **what should happen now?**
+This layer answers: **what happens now?**
 
-The runtime layer is deliberately outside OpenGEO. OpenGEO informs runtimes. It does not control them.
+The execution layer is deliberately outside OpenGEO. OpenGEO informs execution surfaces. It does not control them.
 
 ---
 
@@ -148,8 +165,8 @@ OpenGEO is:
 - publisher-owned;
 - resource-level;
 - implementation-agnostic;
-- runtime-independent;
-- compatible with ARD, `llms.txt`, MCP discovery, APIs, and other discovery or runtime systems;
+- execution-independent;
+- compatible with ARD, `llms.txt`, MCP discovery, APIs, and other discovery or execution systems;
 - opt-in by design.
 
 ### 3.2 OpenGEO Is Not
@@ -159,7 +176,7 @@ OpenGEO is not:
 - a prompt format;
 - an agent framework;
 - an MCP replacement;
-- a runtime API;
+- an execution API;
 - an SEO ranking algorithm;
 - a moderation system;
 - a proprietary merchant API;
@@ -172,13 +189,13 @@ OpenGEO establishes authorship, declared meaning, context, provenance, and equiv
 
 For every proposed field, ask:
 
-> Is this something the publisher knows better than the runtime?
+> Is this something the publisher knows better than the execution surface?
 
 If yes, it probably belongs in OpenGEO.
 
-If no, it probably belongs to the runtime.
+If no, it probably belongs to the execution layer.
 
-This principle keeps OpenGEO small. It prevents the specification from becoming an agent framework or a collection of behavioural instructions.
+This principle keeps OpenGEO small. It prevents the specification from becoming an agent framework, execution framework, or collection of behavioural instructions.
 
 ---
 
@@ -257,7 +274,7 @@ primary_image: https://cdn.example.com/products/example-product-front.jpg
 image_alt: Example Product front pack
 ```
 
-The semantic layer carries media URLs and descriptions. It should not embed image bytes. Rendering, fetching, transformation, or host-specific image blocks belong to the runtime layer.
+The semantic layer carries media URLs and descriptions. It should not embed image bytes. Rendering, fetching, transformation, or host-specific image blocks belong to the execution layer.
 
 ### 4.5 Freshness
 
@@ -271,7 +288,7 @@ availability_updated: 2026-07-05T09:30:00Z
 availability_basis: last_published_snapshot
 ```
 
-This lets a runtime decide whether the value is usable, stale, or needs confirmation. OpenGEO v0.1 does not require inline bindings from static fields to live tools.
+This lets an execution surface decide whether the value is usable, stale, or needs confirmation. OpenGEO v0.1 does not require inline bindings from static fields to live tools.
 
 ---
 
@@ -291,7 +308,7 @@ Reference context fields include:
 | :--- | :--- |
 | `context.profile` | Resource or organisation profile relevant to interpretation. |
 | `context.persona` | Declared role or service persona associated with the resource. |
-| `context.instructions` | Publisher-authored interpretive instructions that a runtime may map to agent/system instructions when constructing an agent from OpenGEO context. |
+| `context.instructions` | Publisher-authored interpretive instructions that an execution surface may map to agent/system instructions when constructing an agent from OpenGEO context. |
 | `context.intent` | Intended or likely user intent for the resource. |
 | `context.tone` | Desired tone or register. |
 | `context.guidance` | Concise interpretive guidance. |
@@ -301,9 +318,9 @@ Reference context fields include:
 
 These fields may be extended by domain profiles.
 
-`context.instructions` is the field most closely aligned with agent construction. It is intended to make it straightforward for a runtime to derive an agent profile, system-instruction block, or equivalent configuration from `context.*` declarations alone.
+`context.instructions` is the field most closely aligned with agent construction. It is intended to make it straightforward for an execution surface to derive an agent profile, system-instruction block, or equivalent configuration from `context.*` declarations alone.
 
-This does not make OpenGEO a prompt format. OpenGEO declares the publisher's intended interpretation envelope. The runtime remains responsible for deciding whether and how those declarations become prompts, policies, tools, or agent configuration.
+This does not make OpenGEO a prompt format. OpenGEO declares the publisher's intended interpretation envelope. The execution surface remains responsible for deciding whether and how those declarations become prompts, policies, tools, or agent configuration.
 
 ### 5.2 Examples
 
@@ -325,17 +342,17 @@ context.sensitivity: high
 context.guidance: Prioritise service information, eligibility, human handoff, and safety qualifiers.
 ```
 
-### 5.3 Runtime Autonomy
+### 5.3 Execution Autonomy
 
-Context declarations inform runtimes. They do not prescribe runtime behaviour.
+Context declarations inform execution surfaces. They do not prescribe behaviour.
 
-An external LLM, first-party assistant, NLWeb-style endpoint, MCP server, browser agent, or future agent runtime may consume the same context declarations. Each runtime remains responsible for reasoning, policy, safety, rendering, tool use, and final output.
+An external LLM, first-party assistant, NLWeb-style endpoint, MCP server, A2A agent, browser agent, or future execution surface may consume the same context declarations. Each surface remains responsible for reasoning, policy, safety, rendering, tool use, and final output.
 
 The distinction is:
 
 - semantic layer defines meaning;
 - context layer defines interpretation;
-- runtime layer defines behaviour.
+- execution layer defines behaviour.
 
 ---
 
@@ -425,9 +442,9 @@ HTML extraction may be used as a transitional migration technique where no struc
 
 ## 7. Discovery
 
-Discovery answers: **where is the publisher's semantic representation?**
+Discovery answers: **where is the representation?**
 
-OpenGEO is compatible with multiple discovery mechanisms.
+OpenGEO is compatible with multiple discovery mechanisms. In the specification, discovery is declarative and mechanism-compatible. In assessment, discovery is engine-relative and observable: can a given engine find the right semantic and contextual representation through the mechanisms it supports?
 
 ### 7.1 HTML Alternate Links
 
@@ -462,7 +479,7 @@ representations:
   - semantic-twin+markdown
 ```
 
-`geo.txt` is a site-wide participation declaration and default-context file. It is not a runtime API.
+`geo.txt` is a site-wide participation declaration and default-context file. It is not an execution API.
 
 ### 7.3 `llms.txt`
 
@@ -478,14 +495,14 @@ These systems own discovery and capability handshaking. OpenGEO owns semantic an
 
 ---
 
-## 8. Runtime Independence
+## 8. Execution Independence
 
 OpenGEO must not become:
 
 - a prompt format;
 - an agent framework;
 - an MCP replacement;
-- a runtime API.
+- an execution API.
 
 OpenGEO declarations may inform:
 
@@ -495,9 +512,9 @@ OpenGEO declarations may inform:
 - MCP servers;
 - browser agents;
 - A2A agents;
-- future runtime systems.
+- future execution systems.
 
-Those runtimes remain responsible for reasoning, retrieval, ranking, tool selection, safety, policy, rendering, and action.
+Those execution surfaces remain responsible for reasoning, retrieval, ranking, tool selection, safety, policy, rendering, and action.
 
 ---
 

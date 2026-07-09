@@ -22,19 +22,19 @@ The core principle of OpenGEO is publisher sovereignty over machine-readable mea
 
 GEO is the practice. OpenGEO is the open specification.
 
-## The Publisher-Runtime Boundary
+## The Publisher-Execution Boundary
 
 OpenGEO begins with a boundary.
 
-Some things are best handled by a runtime: ranking, reasoning, retrieval, tool selection, safety enforcement, rendering, and response generation.
+Some things are best handled by execution surfaces: ranking, reasoning, retrieval, tool selection, safety enforcement, rendering, response generation, tool execution, agent coordination, and action.
 
 Other things are known best by the publisher: identity, provenance, canonical resources, relationships, sensitivity, intended context, and the meaning of its own products, services, policies, and support journeys.
 
 OpenGEO exists for the second category.
 
-> OpenGEO defines what the publisher knows better than the runtime.
+> OpenGEO defines what the publisher knows better than the execution surface.
 
-This boundary matters because intelligent systems should not be forced to infer publisher-owned meaning from fragments when the publisher can declare it directly. The purpose of OpenGEO is not to control runtime behaviour. It is to reduce unnecessary inference before runtime interpretation begins.
+This boundary matters because intelligent systems should not be forced to infer publisher-owned meaning from fragments when the publisher can declare it directly. The purpose of OpenGEO is not to control execution behaviour. It is to reduce unnecessary inference before execution begins.
 
 ## What OpenGEO Provides
 
@@ -44,12 +44,12 @@ A resource may be a product, service, article, location, policy, offer, collecti
 
 OpenGEO separates four concerns:
 
-- **Discovery:** how intelligent systems find the publisher's semantic representation.
+- **Discovery:** where the representation is and how an engine can find it through the mechanisms it supports.
 - **Semantics:** what the resource is.
 - **Context:** how the resource should be understood.
-- **Runtime:** what an AI system does with that information.
+- **Execution:** what an AI system, assistant, agent, tool, or platform surface does with that information.
 
-OpenGEO defines the semantic and context layers. Discovery mechanisms and runtime systems remain free to evolve.
+OpenGEO defines the semantic and context layers. Discovery mechanisms and execution systems remain free to evolve.
 
 ## Semantic Twins
 
@@ -69,11 +69,11 @@ Publishers do not only need to declare facts. They also need to declare interpre
 
 The `context.*` namespace provides a coherent way to publish these declarations.
 
-Context is not a prompt and not a command. It informs intelligent systems while preserving runtime autonomy. It helps reduce unnecessary inference by telling the system what the publisher is uniquely qualified to know.
+Context is not a prompt and not a command. It informs intelligent systems while preserving execution autonomy. It helps reduce unnecessary inference by telling the system what the publisher is uniquely qualified to know.
 
 ## Boundaries
 
-OpenGEO is intentionally modest. It provides a common semantic and contextual foundation; it does not replace downstream trust, ranking, verification, moderation, safety, or runtime policy.
+OpenGEO is intentionally modest. It provides a common semantic and contextual foundation; it does not replace downstream trust, ranking, verification, moderation, safety, execution, or platform policy.
 
 | OpenGEO Is | OpenGEO Is Not |
 | :--- | :--- |

@@ -10,18 +10,20 @@ OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the refere
 
 ## Core Principle
 
-> **OpenGEO defines what the publisher knows better than the runtime.**
+> **OpenGEO defines what the publisher knows better than the execution surface.**
 
-Discovery mechanisms may find OpenGEO resources. Runtimes may interpret, rank, reason, retrieve, render, or act on them. OpenGEO defines the publisher-owned semantic and contextual declarations that sit between those layers.
+Discovery mechanisms may find OpenGEO resources. Execution surfaces may interpret, rank, reason, retrieve, render, or act on them. OpenGEO defines the publisher-owned semantic and contextual declarations that sit between discovery and execution.
 
 ## Four-Layer Architecture
 
 | Layer | Purpose | Question answered | OpenGEO role |
 | :--- | :--- | :--- | :--- |
-| Discovery | Locating participation and resources | Where is the publisher's semantic representation? | Compatible with discovery mechanisms. |
+| Discovery | Locating participation and resources | Where is the representation? | Declarative and mechanism-compatible. |
 | Semantic | Declared facts and relationships | What is this resource? | Normative. |
 | Context | Declared interpretation envelope | How should this resource be understood? | Normative. |
-| Runtime | Reasoning, retrieval, ranking, tool use, rendering, safety, policy | What should happen now? | Out of scope; informed by OpenGEO. |
+| Execution | Reasoning, retrieval, ranking, tool use, rendering, safety, policy, action | What happens now? | Out of scope; informed by OpenGEO. |
+
+Assessment asks the same questions engine by engine: can this engine find it, understand the declared facts, preserve the declared intent/tone/guidance, and what does it actually do with the representation?
 
 ## OpenGEO Is
 
@@ -29,8 +31,8 @@ Discovery mechanisms may find OpenGEO resources. Runtimes may interpret, rank, r
 - Publisher-owned
 - Resource-level
 - Implementation-agnostic
-- Runtime-independent
-- Compatible with ARD, `llms.txt`, MCP discovery, APIs, and other discovery or runtime systems
+- Execution-independent
+- Compatible with ARD, `llms.txt`, MCP discovery, APIs, and other discovery or execution systems
 - Opt-in by design
 
 ## OpenGEO Is Not
@@ -38,7 +40,7 @@ Discovery mechanisms may find OpenGEO resources. Runtimes may interpret, rank, r
 - A prompt format
 - An agent framework
 - An MCP replacement
-- A runtime API
+- An execution API
 - An SEO ranking algorithm
 - A moderation system
 - A proprietary merchant API
@@ -51,7 +53,7 @@ The `context.*` namespace is a first-class part of OpenGEO.
 
 Context declarations define the publisher's interpretation envelope around a resource. They can describe tone, intent, sensitivity, guidance, provenance, volatility, persona, profile, or domain-specific context.
 
-Context is declarative. It informs intelligent systems while preserving runtime autonomy.
+Context is declarative. It informs intelligent systems while preserving execution autonomy.
 
 Example:
 
@@ -86,6 +88,8 @@ Other representations may be generated from the same semantic model, including J
 ## Discovery
 
 OpenGEO is compatible with multiple discovery mechanisms.
+
+In the specification, discovery is declarative and mechanism-compatible. In assessment, discovery is engine-relative and observable: can a given engine find the right semantic and contextual representation through the mechanisms it supports?
 
 ### HTML Alternate Links
 
