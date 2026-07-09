@@ -88,6 +88,14 @@ Trust, verification, ranking, and policy remain the responsibility of consuming 
 
 OpenGEO makes the publisher's declared meaning and context easier to find, inspect, compare, and evaluate.
 
+## Assurance
+
+OpenGEO declarations are governance-relevant artefacts.
+
+They should be published under assurance controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
+
+This does not mean OpenGEO provides AI governance. It means publisher-declared AI meaning creates a surface that must be governed.
+
 ## The Path Forward
 
 The internet is becoming an environment of active interpretation.

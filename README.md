@@ -113,6 +113,14 @@ Agentic Resource Discovery, MCP discovery, `.well-known` resources, registries, 
 
 These systems own discovery and capability handshaking. OpenGEO owns semantic and contextual declarations.
 
+## Assurance
+
+Assurance is a cross-cutting concern around the DSCE model, not a fifth layer.
+
+OpenGEO declarations are governance-relevant artefacts. They should be published with appropriate controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
+
+OpenGEO does not provide AI governance, compliance, or authentication by itself. It provides declarations and metadata that can support auditability and external verification.
+
 ## Document Index
 
 - [OPENGEO_SPEC.md](OPENGEO_SPEC.md): The working v0.1 technical specification.

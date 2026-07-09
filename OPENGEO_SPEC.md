@@ -532,7 +532,61 @@ If a publisher makes false, misleading, stale, or contradictory declarations, do
 
 ---
 
-## 10. Acknowledgements
+## 10. Assurance, Governance, and Security Considerations
+
+Assurance is a cross-cutting concern of OpenGEO.
+
+It is not a fifth layer in the DSCE model. OpenGEO does not define a complete governance, compliance, or security framework. However, OpenGEO declarations are governance-relevant artefacts and SHOULD be published under controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
+
+### 10.1 Provenance and Publisher Authority
+
+Declarations SHOULD identify the publisher, canonical source, source URL, update timestamp, and generation process where appropriate.
+
+Where a declaration is generated from a CMS, product information system, knowledge base, data pipeline, or CI/CD process, implementations SHOULD preserve enough metadata to identify the source of truth and generation path.
+
+OpenGEO can declare publisher identity and provenance. Consuming systems remain responsible for verifying whether that identity and provenance are trustworthy.
+
+### 10.2 Freshness and Volatility
+
+Declarations SHOULD include freshness metadata for facts likely to change, especially prices, offers, stock, availability, eligibility, location-specific service access, policy status, or safety-relevant information.
+
+Resources SHOULD declare review cadence, volatility, or freshness basis where stale interpretation could matter.
+
+### 10.3 Human/Machine Equivalence
+
+Machine-facing projections SHOULD preserve the same material meaning as the human-facing resource.
+
+This is especially important for transactional, policy, advisory, regulated, medical, financial, or safety-relevant content. A Semantic Twin should not quietly add, remove, or materially change claims that affect user understanding, eligibility, risk, price, service access, or product identity.
+
+### 10.4 Review and Ownership
+
+Publishers SHOULD define ownership for creating, reviewing, approving, updating, and retiring OpenGEO declarations.
+
+For higher-risk domains, review SHOULD include the same organisational functions that govern the equivalent human-facing material, such as product, content, legal, clinical, compliance, brand, security, or engineering teams.
+
+### 10.5 Security Considerations
+
+OpenGEO declarations MUST NOT expose secrets, credentials, private keys, private access tokens, internal prompts, unpublished offers, private business rules, sensitive personal data, unsafe operational details, or internal-only system instructions.
+
+Implementations SHOULD treat machine-facing declarations as public web artefacts unless access controls explicitly state otherwise.
+
+### 10.6 Spoofing and Trust
+
+Consumers SHOULD NOT assume that a discovered declaration is trustworthy merely because it exists.
+
+Discovery can reveal a declaration. It does not by itself prove authority, accuracy, safety, or freshness. Verification, trust scoring, ranking, policy enforcement, and user-facing confidence remain the responsibility of consuming systems and execution surfaces.
+
+OpenGEO should remain compatible with external trust mechanisms, including domain control, `.well-known` proofs, signed manifests, provenance records, ARD trust manifests, platform verification, and future identity or attestation systems.
+
+### 10.7 Auditability
+
+Implementations SHOULD preserve enough evidence to reconstruct which declaration version was available at a given time.
+
+Useful audit evidence may include version identifiers, timestamps, source hashes, generation logs, approval records, canonical source references, and change history.
+
+---
+
+## 11. Acknowledgements
 
 OpenGEO builds in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's `llms.txt` proposal.
 
@@ -540,7 +594,7 @@ OpenGEO treats `llms.txt` as a complementary orientation and root-index conventi
 
 ---
 
-## 11. Versioning and Governance
+## 12. Versioning and Governance
 
 This document is a working draft of OpenGEO v0.1.
 
@@ -548,7 +602,7 @@ The specification is intended to evolve as an open, community-reviewable standar
 
 ---
 
-## 12. Licence
+## 13. Licence
 
 This specification document is published under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence, with attribution to Zahid Saleem.
 
