@@ -47,9 +47,24 @@ OpenGEO gives publishers a way to declare semantic meaning and interpretation co
 
 ---
 
-## 2. Architectural Layers
+## 2. Conceptual Model: DSCE with Assurance Oversight
 
-OpenGEO is organised around four layers. The specification defines the semantic and context layers, while remaining compatible with discovery and execution ecosystems.
+OpenGEO is organised around the DSCE interpretation chain:
+
+- Discovery;
+- Semantic;
+- Context;
+- Execution.
+
+DSCE defines the AI interpretation chain. Assurance governs every checkpoint.
+
+Discovery, Semantic, Context, and Execution describe how intelligent systems locate, understand, contextualise, and act upon publisher-controlled information.
+
+Assurance is not a separate layer in the chain. It is a cross-cutting oversight concern that applies across Discovery, Semantic, Context, and Execution.
+
+OpenGEO primarily standardises publisher-declared resources across Discovery, Semantic, and Context. Execution remains the responsibility of AI engines, platforms, tools, agents, and consuming systems.
+
+OpenGEO resources should be designed so that assurance can be evaluated at every stage of the interpretation chain.
 
 The architectural model is **DSCE 🎲: Discovery, Semantic, Context, Execution**.
 
@@ -534,7 +549,7 @@ If a publisher makes false, misleading, stale, or contradictory declarations, do
 
 ## 10. Assurance, Governance, and Security Considerations
 
-Assurance is a cross-cutting concern of OpenGEO.
+As introduced in the conceptual model, Assurance is a cross-cutting concern of OpenGEO.
 
 It is not a fifth layer in the DSCE model. OpenGEO does not define a complete governance, compliance, or security framework. However, OpenGEO declarations are governance-relevant artefacts and SHOULD be published under controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
 
