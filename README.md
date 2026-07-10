@@ -14,7 +14,33 @@ OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the refere
 
 Discovery mechanisms may find OpenGEO resources. Execution surfaces may interpret, rank, reason, retrieve, render, or act on them. OpenGEO defines the publisher-owned semantic and contextual declarations that sit between discovery and execution.
 
-## Four-Layer Architecture
+## DSCE with Assurance Oversight
+
+OpenGEO is organised around the **DSCE** interpretation chain:
+
+- **Discovery**
+- **Semantic**
+- **Context**
+- **Execution**
+
+**DSCE defines the AI interpretation chain. Assurance governs every checkpoint.**
+
+Discovery, Semantic, Context, and Execution describe how intelligent systems locate, understand, contextualise, and act upon publisher-controlled information.
+
+Assurance is not a fifth layer. It is the oversight concern around the chain: provenance, authorship, freshness, security, auditability, ownership, governance, equivalence, and operational control.
+
+```text
+                 ASSURANCE / OVERSIGHT
+ provenance | authorship | freshness | security | auditability | ownership
+
+ +--------------------------------------------------------------------+
+ |                                                                    |
+ |   Discovery  ->  Semantic  ->  Context  ->  Execution              |
+ |                                                                    |
+ +--------------------------------------------------------------------+
+```
+
+OpenGEO primarily standardises publisher-declared resources across Discovery, Semantic, and Context. Execution remains the responsibility of AI engines, platforms, tools, agents, and consuming systems.
 
 | Layer | Purpose | Question answered | OpenGEO role |
 | :--- | :--- | :--- | :--- |
