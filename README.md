@@ -1,16 +1,24 @@
 # OpenGEO
 
-> An open specification for publisher-owned semantic and contextual declarations for intelligent systems.
+> An open specification for publishing canonical organisational meaning and context to intelligent systems.
 
 OpenGEO is about **Generative Engine Optimisation and AI interpretation**, not geolocation, maps, or geographic data.
 
 OpenGEO can describe a physical location as a resource, but it is not a geospatial or mapping standard.
 
-It allows publishers to declare, at the resource level, what an organisation, product, service, policy, location, article, offer, collection, or other entity is, and how it should be understood by intelligent systems.
+AI systems increasingly answer questions about organisations before a user reaches the organisation's own website. Those answers may describe products, services, policies, advice, offers, locations, media, and brand intent.
+
+OpenGEO gives publishers a way to declare the meaning they know best: who they are, what their resources are, how those resources relate, what context matters, and what should be treated as current, sensitive, canonical, or authoritative.
 
 GEO is the practice. OpenGEO is the specification.
 
-OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the reference implementation of OpenGEO, commonly expressed as Markdown with YAML front matter. The specification owns semantics and context, not syntax.
+For example, a publisher can declare that:
+
+- a page is an official support journey, not a commercial product page;
+- a product image is the canonical image for a specific SKU;
+- a policy page is the current source for eligibility rules;
+- an advice page should be interpreted with a calm, non-commercial tone;
+- a category page represents a curated collection, not the full catalogue.
 
 ## Problem Statement
 
@@ -27,7 +35,7 @@ That indirect reconstruction can create drift:
 - stale or third-party information may be treated as current;
 - relationships between products, services, advice, policies, and locations may be lost.
 
-OpenGEO gives publishers a way to declare their own machine-readable meaning and interpretation context directly, so intelligent systems do not have to infer it only from fragments.
+OpenGEO addresses that drift by giving publishers a direct declaration layer for machine-readable meaning and interpretation context.
 
 ## Core Principle
 
@@ -114,6 +122,8 @@ context.guidance: Prioritise service information, eligibility, human handoff, an
 ## Semantic Twin Reference Implementation
 
 A Semantic Twin is the reference implementation of OpenGEO.
+
+It is one practical way to publish OpenGEO declarations today. OpenGEO owns semantics and context, not syntax.
 
 For a human-facing resource, a publisher may expose a colocated machine-readable twin:
 
