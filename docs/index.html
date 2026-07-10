@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OpenGEO - Semantic Twins for the Agentic Web</title>
-  <meta name="description" content="OpenGEO is an open semantic specification for publishing canonical organisational meaning to intelligent systems.">
+  <title>OpenGEO - Publisher-declared meaning for intelligent systems</title>
+  <meta name="description" content="OpenGEO is an open specification for publishing canonical organisational meaning and context to intelligent systems.">
   <style>
     :root {
       color-scheme: light;
@@ -91,7 +91,7 @@
     h1 {
       margin: 0;
       max-width: 780px;
-      font-size: clamp(2.8rem, 8vw, 6.4rem);
+      font-size: 5rem;
       line-height: 0.95;
       letter-spacing: 0;
     }
@@ -100,7 +100,11 @@
       margin: 24px 0 0;
       max-width: 700px;
       color: var(--muted);
-      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      font-size: 1.28rem;
+    }
+
+    .hero-note {
+      margin-top: 18px;
     }
 
     .actions {
@@ -150,7 +154,7 @@
 
     .section-heading {
       margin: 0 0 16px;
-      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-size: 2.5rem;
       line-height: 1.05;
       letter-spacing: 0;
     }
@@ -216,6 +220,15 @@
       color: var(--muted);
     }
 
+    .steps.four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92em;
+    }
+
     footer {
       padding: 34px 0;
       color: var(--muted);
@@ -226,12 +239,21 @@
     @media (max-width: 860px) {
       .hero-grid,
       .columns,
-      .steps {
+      .steps,
+      .steps.four {
         grid-template-columns: 1fr;
       }
 
       .hero {
         padding-top: 46px;
+      }
+
+      h1 {
+        font-size: 3.25rem;
+      }
+
+      .section-heading {
+        font-size: 1.9rem;
       }
 
       .diagram-shell {
@@ -276,9 +298,10 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <p class="eyebrow">Open semantic specification</p>
-          <h1>Semantic Twins for the Agentic Web.</h1>
-          <p class="lead">OpenGEO defines a publisher-controlled semantic layer for AI-mediated experience: canonical meaning, graph traversal, context architecture, media equivalence, and mechanism-compatible discovery through alternate links, ARD, geo.txt, and optional MCP tools.</p>
+          <p class="eyebrow">Generative Engine Optimisation</p>
+          <h1>OpenGEO</h1>
+          <p class="lead">An open specification for publishing canonical organisational meaning and context to intelligent systems.</p>
+          <p class="section-copy hero-note">OpenGEO is about AI interpretation, not geolocation, maps, or geographic data.</p>
           <div class="actions">
             <a class="button primary" href="https://github.com/donhaji/opengeo/blob/main/OPENGEO_SPEC.md">Read the spec</a>
             <a class="button" href="https://github.com/donhaji/opengeo/blob/main/opengeo-manifesto.md">Read the manifesto</a>
@@ -288,7 +311,7 @@
         <div class="diagram-shell" aria-label="OpenGEO architecture diagram">
           <svg class="diagram" viewBox="0 0 760 560" role="img" aria-labelledby="diagram-title diagram-desc" xmlns="http://www.w3.org/2000/svg">
             <title id="diagram-title">OpenGEO architecture</title>
-            <desc id="diagram-desc">A publisher source of truth feeds one OpenGEO semantic contract, which projects to human HTML with alternate links, Semantic Twins, geo.txt, ARD catalogs, and optional MCP tools. AI systems consume the discoverable semantic layer and are evaluated by an AI test harness.</desc>
+            <desc id="diagram-desc">The DSCE interpretation chain moves from Discovery to Semantic to Context to Execution. Assurance provides oversight across every checkpoint. OpenGEO primarily standardises publisher declarations across Discovery, Semantic, and Context, while Execution remains the responsibility of consuming systems.</desc>
             <defs>
               <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
                 <path d="M0,0 L10,5 L0,10 Z" fill="#59635c"></path>
@@ -300,59 +323,42 @@
 
             <rect x="24" y="24" width="712" height="512" rx="18" fill="#fbfcfa"></rect>
 
-            <g filter="url(#soft-shadow)">
-              <rect x="245" y="42" width="270" height="74" rx="8" fill="#ffffff" stroke="#dbe3dc"></rect>
-              <text x="380" y="72" text-anchor="middle" font-size="16" font-weight="700" fill="#17211b">Publisher Source of Truth</text>
-              <text x="380" y="96" text-anchor="middle" font-size="13" fill="#59635c">brand, services, content, policies</text>
-            </g>
+            <text x="380" y="68" text-anchor="middle" font-size="17" font-weight="760" fill="#075541">ASSURANCE / OVERSIGHT</text>
+            <text x="380" y="94" text-anchor="middle" font-size="12" fill="#59635c">provenance &middot; authorship &middot; freshness &middot; security &middot; auditability &middot; ownership</text>
 
-            <line x1="380" y1="116" x2="380" y2="158" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></line>
+            <rect x="52" y="120" width="656" height="286" rx="10" fill="#ffffff" stroke="#0f7b5f" stroke-width="2"></rect>
+            <text x="76" y="151" font-size="12" font-weight="700" fill="#075541">DSCE (PRONOUNCED "DICE")</text>
 
             <g filter="url(#soft-shadow)">
-              <rect x="230" y="160" width="300" height="86" rx="8" fill="#075541" stroke="#075541"></rect>
-              <text x="380" y="194" text-anchor="middle" font-size="18" font-weight="760" fill="#ffffff">OpenGEO Semantic Contract</text>
-              <text x="380" y="220" text-anchor="middle" font-size="13" fill="#d7eee6">one canonical semantic contract</text>
+              <rect x="78" y="188" width="132" height="104" rx="8" fill="#ffffff" stroke="#dbe3dc"></rect>
+              <text x="144" y="228" text-anchor="middle" font-size="16" font-weight="760" fill="#17211b">Discovery</text>
+              <text x="144" y="254" text-anchor="middle" font-size="12" fill="#59635c">Where is it?</text>
             </g>
-
-            <path d="M380 246 C380 278, 154 284, 154 320" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-            <path d="M380 246 C380 278, 305 284, 305 320" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-            <path d="M380 246 C380 278, 455 284, 455 320" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-            <path d="M380 246 C380 278, 606 284, 606 320" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-
-            <g>
-              <rect x="62" y="320" width="184" height="86" rx="8" fill="#ffffff" stroke="#dbe3dc"></rect>
-              <text x="154" y="352" text-anchor="middle" font-size="15" font-weight="700" fill="#17211b">HTML Projection</text>
-              <text x="154" y="377" text-anchor="middle" font-size="13" fill="#59635c">alternate link</text>
-            </g>
-            <g>
-              <rect x="213" y="320" width="184" height="86" rx="8" fill="#ffffff" stroke="#dbe3dc"></rect>
-              <text x="305" y="352" text-anchor="middle" font-size="15" font-weight="700" fill="#17211b">Semantic Twin</text>
-              <text x="305" y="377" text-anchor="middle" font-size="13" fill="#59635c">equivalence engine</text>
-            </g>
-            <g>
-              <rect x="364" y="320" width="184" height="86" rx="8" fill="#ffffff" stroke="#dbe3dc"></rect>
-              <text x="456" y="352" text-anchor="middle" font-size="15" font-weight="700" fill="#17211b">geo.txt + ARD</text>
-              <text x="456" y="377" text-anchor="middle" font-size="13" fill="#59635c">declaration + discovery</text>
-            </g>
-            <g>
-              <rect x="515" y="320" width="184" height="86" rx="8" fill="#ffffff" stroke="#dbe3dc"></rect>
-              <text x="607" y="352" text-anchor="middle" font-size="15" font-weight="700" fill="#17211b">MCP / API</text>
-              <text x="607" y="377" text-anchor="middle" font-size="13" fill="#59635c">live tools</text>
-            </g>
-
-            <path d="M154 406 C154 440, 222 446, 266 456" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-            <path d="M305 406 L335 452" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-            <path d="M456 406 L425 452" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-            <path d="M607 406 C607 440, 538 446, 494 456" fill="none" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></path>
-
+            <line x1="210" y1="240" x2="244" y2="240" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></line>
             <g filter="url(#soft-shadow)">
-              <rect x="255" y="452" width="250" height="62" rx="8" fill="#245f9b" stroke="#245f9b"></rect>
-              <text x="380" y="478" text-anchor="middle" font-size="16" font-weight="760" fill="#ffffff">AI Systems</text>
-              <text x="380" y="500" text-anchor="middle" font-size="13" fill="#dbeafe">consume and interpret meaning</text>
+              <rect x="250" y="188" width="132" height="104" rx="8" fill="#075541" stroke="#075541"></rect>
+              <text x="316" y="228" text-anchor="middle" font-size="16" font-weight="760" fill="#ffffff">Semantic</text>
+              <text x="316" y="254" text-anchor="middle" font-size="12" fill="#d7eee6">What is it?</text>
+            </g>
+            <line x1="382" y1="240" x2="416" y2="240" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></line>
+            <g filter="url(#soft-shadow)">
+              <rect x="422" y="188" width="132" height="104" rx="8" fill="#075541" stroke="#075541"></rect>
+              <text x="488" y="228" text-anchor="middle" font-size="16" font-weight="760" fill="#ffffff">Context</text>
+              <text x="488" y="254" text-anchor="middle" font-size="12" fill="#d7eee6">How understood?</text>
+            </g>
+            <line x1="554" y1="240" x2="588" y2="240" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></line>
+            <g filter="url(#soft-shadow)">
+              <rect x="594" y="188" width="88" height="104" rx="8" fill="#245f9b" stroke="#245f9b"></rect>
+              <text x="638" y="228" text-anchor="middle" font-size="14" font-weight="760" fill="#ffffff">Execution</text>
+              <text x="638" y="254" text-anchor="middle" font-size="11" fill="#dbeafe">What now?</text>
             </g>
 
-            <path d="M505 483 C574 483, 612 455, 629 410" fill="none" stroke="#a74455" stroke-width="2" marker-end="url(#arrow)"></path>
-            <text x="642" y="458" font-size="12" fill="#a74455" transform="rotate(-58 642 458)">drift tests</text>
+            <path d="M78 330 L78 350 L554 350 L554 330" fill="none" stroke="#0f7b5f" stroke-width="2"></path>
+            <text x="316" y="378" text-anchor="middle" font-size="13" font-weight="700" fill="#075541">OpenGEO primarily standardises publisher declarations</text>
+
+            <text x="380" y="456" text-anchor="middle" font-size="17" font-weight="760" fill="#17211b">DSCE defines the AI interpretation chain.</text>
+            <text x="380" y="486" text-anchor="middle" font-size="17" font-weight="760" fill="#075541">Assurance governs every checkpoint.</text>
+            <text x="380" y="516" text-anchor="middle" font-size="12" fill="#59635c">Execution remains the responsibility of consuming systems.</text>
           </svg>
         </div>
       </div>
@@ -360,27 +366,31 @@
 
     <section class="band">
       <div class="wrap">
-        <h2 class="section-heading">One semantic contract. Multiple projections.</h2>
-        <p class="section-copy">OpenGEO is the semantic contract. Semantic Twins, HTML, geo.txt, ARD catalogs, MCP tools, APIs, and optional JSON-LD compatibility outputs are projections of that contract, each serving a different consumer without changing the underlying meaning.</p>
+        <h2 class="section-heading">AI systems are interpreting organisations.</h2>
+        <p class="section-copy">Answers about products, services, policies, advice, offers, locations, and media are often reconstructed from search results, cached pages, third-party summaries, feeds, and screenshots. Meaning, tone, canonical media, relationships, and freshness can drift in that reconstruction. OpenGEO gives publishers a direct declaration layer for the meaning and context they know best.</p>
       </div>
     </section>
 
     <section>
       <div class="wrap">
-        <h2 class="section-heading">OpenGEO + ARD</h2>
-        <p class="section-copy">ARD provides one possible agentic discovery and trust handshake. OpenGEO provides the canonical semantic and contextual representation those discovered resources expose. In assessment, the practical question is engine-relative: which systems can find which layer through the discovery mechanisms they support?</p>
-        <div class="steps">
+        <h2 class="section-heading">DSCE with Assurance Oversight</h2>
+        <p class="section-copy">DSCE, pronounced "dice", describes how intelligent systems locate, understand, contextualise, and act upon publisher-controlled information. OpenGEO primarily standardises declarations across Discovery, Semantic, and Context. Execution is informed by those declarations but remains outside the specification.</p>
+        <div class="steps four">
           <div class="step">
             <strong>Discovery</strong>
-            <p>HTML alternate links expose page-level twins; ARD catalogs, geo.txt, llms.txt, and other mechanisms expose broader declarations. Each engine may support a different subset.</p>
+            <p>Where is the representation, and can this engine find it through a mechanism it supports?</p>
           </div>
           <div class="step">
-            <strong>Experience</strong>
-            <p>Semantic Twins bind facts, canonical media, graph edges, context, and human handoff into one AI-legible projection.</p>
+            <strong>Semantic</strong>
+            <p>What is this resource, which facts are declared, and how does it relate to other resources?</p>
+          </div>
+          <div class="step">
+            <strong>Context</strong>
+            <p>How should the resource be understood, including intent, tone, sensitivity, and guidance?</p>
           </div>
           <div class="step">
             <strong>Execution</strong>
-            <p>MCP and API tools may add refreshed availability, faceted search, rendered cards, service availability, and other optional operations.</p>
+            <p>What does the consuming system actually do through reasoning, retrieval, rendering, tools, or action?</p>
           </div>
         </div>
       </div>
@@ -388,40 +398,76 @@
 
     <section class="band">
       <div class="wrap">
-        <h2 class="section-heading">Context Architecture</h2>
-        <p class="section-copy">OpenGEO defines sparse context attributes for tone, sensitivity, intent, product-surfacing policy, escalation, and human handoff. This allows the same organisation to preserve different conduct in different journeys, such as commercial discovery, advice, support, or sensitive care.</p>
+        <h2 class="section-heading">The publisher-execution boundary</h2>
+        <p class="section-copy"><strong>OpenGEO defines what the publisher knows better than the execution surface.</strong> Publishers know their identity, canonical facts and media, resource relationships, intended context, and sources of truth. Consuming systems remain responsible for ranking, reasoning, verification, safety, policy, rendering, and action.</p>
       </div>
     </section>
 
     <section>
       <div class="wrap">
-        <h2 class="section-heading">Roadmap</h2>
+        <h2 class="section-heading">One semantic model. Multiple projections.</h2>
+        <p class="section-copy">Human-facing HTML and machine-facing forms should be generated from the publisher's source of truth and preserve the same material meaning. The syntax can change without changing the semantic contract.</p>
         <div class="steps">
           <div class="step">
-            <strong>Circle 1</strong>
-            <p>Explicit Semantic Twin projection, HTML alternate links, geo.txt, ARD discovery, canonical media, graph traversal, and optional MCP tools.</p>
+            <strong>Human projection</strong>
+            <p>HTML presents the resource for people, including the organisation's content, journeys, media, and interactions.</p>
           </div>
           <div class="step">
-            <strong>Circle 2</strong>
-            <p>Passive intent and context modes inferred from resource, journey, query, session, and sensitivity signals.</p>
+            <strong>Semantic Twin</strong>
+            <p>The v0.1 reference implementation uses inspectable Markdown and YAML to publish an equivalent machine-facing representation.</p>
           </div>
           <div class="step">
-            <strong>Circle 3</strong>
-            <p>Controlled agentic execution through first-party assistants, live tools, rendering contracts, booking, and checkout handoff.</p>
+            <strong>Other projections</strong>
+            <p>JSON, APIs, MCP responses, graph stores, and future serialisations may project the same declared meaning where useful.</p>
           </div>
         </div>
       </div>
     </section>
 
     <section class="band">
+      <div class="wrap">
+        <h2 class="section-heading">Context architecture</h2>
+        <p class="section-copy">The <code>context.*</code> namespace lets publishers declare the interpretation envelope around a resource: intent, tone, sensitivity, guidance, provenance, volatility, persona, or domain-specific context. A support or sensitive-care journey should not be interpreted like an ordinary commercial journey. Context informs the consuming system without becoming a prompt format or overriding its autonomy.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="section-heading">Compatible discovery, independent execution</h2>
+        <p class="section-copy">OpenGEO does not require a single discovery mechanism. HTML alternate links can expose a page-level Semantic Twin. <code>geo.txt</code> can declare site-wide participation and defaults. <code>llms.txt</code> can provide orientation. ARD, MCP discovery, well-known resources, registries, APIs, and future mechanisms may point to OpenGEO resources. Support is engine-relative, so assessment asks which engines can see which layer.</p>
+        <div class="steps">
+          <div class="step">
+            <strong>Alternate link</strong>
+            <p>A human-facing page can explicitly identify its colocated machine-readable representation.</p>
+          </div>
+          <div class="step">
+            <strong>ARD and other discovery</strong>
+            <p>External standards can own discovery, identity, trust handshakes, and capability declaration while pointing to OpenGEO resources.</p>
+          </div>
+          <div class="step">
+            <strong>MCP, APIs, and agents</strong>
+            <p>Optional execution systems may use OpenGEO declarations, but OpenGEO does not command or guarantee their behaviour.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2 class="section-heading">Assurance across every checkpoint</h2>
+        <p class="section-copy">OpenGEO declarations are governance-relevant artefacts. They should be published with controls for provenance, authorship, freshness, review, security, auditability, ownership, and equivalence with human-facing resources. Assurance is not a fifth DSCE layer, and OpenGEO does not claim to provide a complete governance, compliance, authentication, or security framework.</p>
+      </div>
+    </section>
+
+    <section>
       <div class="wrap columns">
         <div>
           <h2 class="label">OpenGEO is</h2>
           <ul class="plain-list">
-            <li>An open semantic specification</li>
-            <li>A publisher-controlled canonical representation</li>
-            <li>A resource-level semantic declaration model</li>
-            <li>A complement to ARD, `llms.txt`, and MCP</li>
+            <li>An open specification for semantic and contextual declarations</li>
+            <li>Publisher-owned and resource-level</li>
+            <li>Implementation-agnostic and execution-independent</li>
+            <li>A complement to ARD, <code>llms.txt</code>, and MCP</li>
             <li>Opt-in by design</li>
           </ul>
         </div>
@@ -432,8 +478,9 @@
             <li>A moderation system</li>
             <li>A proprietary merchant API</li>
             <li>A replacement for ARD</li>
-            <li>A replacement for `llms.txt`</li>
+            <li>A replacement for <code>llms.txt</code></li>
             <li>A requirement to use JSON-LD</li>
+            <li>A guarantee of objective truth</li>
           </ul>
         </div>
       </div>
@@ -442,7 +489,7 @@
 
   <footer>
     <div class="wrap">
-      OpenGEO is published by Zahid Saleem. Built in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's `llms.txt` proposal and emerging Agentic Resource Discovery patterns.
+      OpenGEO is published by Zahid Saleem. Built in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's <code>llms.txt</code> proposal and emerging Agentic Resource Discovery patterns.
     </div>
   </footer>
 </body>
