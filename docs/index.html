@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>OpenGEO - Publisher-declared meaning for intelligent systems</title>
   <meta name="description" content="OpenGEO is an open specification for publishing canonical organisational meaning and context to intelligent systems.">
+  <link rel="alternate" type="text/markdown" href="https://donhaji.github.io/opengeo/index.md" title="OpenGEO Semantic Twin">
   <style>
     :root {
       color-scheme: light;
@@ -71,7 +72,7 @@
     }
 
     .hero {
-      padding: 76px 0 42px;
+      padding: 42px 0 38px;
     }
 
     .hero-grid {
@@ -134,18 +135,100 @@
       border-color: var(--green-dark);
     }
 
-    .diagram-shell {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 18px;
+    .dice-experience {
+      min-width: 0;
+      text-align: center;
     }
 
-    .diagram {
+    .dice-intro {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .dice-title {
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1.1;
+    }
+
+    .dice-setup {
+      margin: 8px auto 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .dice-viewport {
+      position: relative;
+      width: 100%;
+      min-height: 240px;
+      height: 240px;
+    }
+
+    .dice-canvas {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .dice-fallback {
+      display: grid;
+      place-items: center;
+      position: absolute;
+      inset: 0;
+      color: var(--muted);
+    }
+
+    .dice-viewport.is-ready .dice-fallback {
+      display: none;
+    }
+
+    .dice-action {
+      margin: 18px 0 -6px;
+    }
+
+    .dice-action .button {
+      min-width: 152px;
+      cursor: pointer;
+    }
+
+    .dice-action .button:disabled {
+      cursor: wait;
+      opacity: 0.68;
+    }
+
+    .dice-result {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin: 8px auto 0;
+      max-width: 680px;
+      text-align: left;
+      transition: opacity 160ms ease;
+    }
+
+    .dice-result.is-rolling {
+      opacity: 0.36;
+    }
+
+    .dice-result-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--green-dark);
+      font-size: 0.78rem;
+      font-weight: 760;
+      text-transform: uppercase;
+    }
+
+    .dice-result p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .dice-result strong {
+      color: var(--ink);
     }
 
     section {
@@ -240,7 +323,8 @@
       .hero-grid,
       .columns,
       .steps,
-      .steps.four {
+      .steps.four,
+      .dice-result {
         grid-template-columns: 1fr;
       }
 
@@ -256,8 +340,8 @@
         font-size: 1.9rem;
       }
 
-      .diagram-shell {
-        padding: 10px;
+      .dice-viewport {
+        min-height: 240px;
       }
     }
 
@@ -272,6 +356,16 @@
         padding: 16px 0;
       }
 
+      .hero {
+        padding-top: 32px;
+      }
+
+      .dice-viewport {
+        min-height: 210px;
+        height: 210px;
+        aspect-ratio: auto;
+      }
+
       .nav-links {
         gap: 14px;
       }
@@ -281,6 +375,14 @@
       }
     }
   </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -308,58 +410,28 @@
           </div>
         </div>
 
-        <div class="diagram-shell" aria-label="OpenGEO architecture diagram">
-          <svg class="diagram" viewBox="0 0 760 560" role="img" aria-labelledby="diagram-title diagram-desc" xmlns="http://www.w3.org/2000/svg">
-            <title id="diagram-title">OpenGEO architecture</title>
-            <desc id="diagram-desc">The DSCE interpretation chain moves from Discovery to Semantic to Context to Execution. Assurance provides oversight across every checkpoint. OpenGEO primarily standardises publisher declarations across Discovery, Semantic, and Context, while Execution remains the responsibility of consuming systems.</desc>
-            <defs>
-              <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-                <path d="M0,0 L10,5 L0,10 Z" fill="#59635c"></path>
-              </marker>
-              <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#17211b" flood-opacity="0.12"></feDropShadow>
-              </filter>
-            </defs>
-
-            <rect x="24" y="24" width="712" height="512" rx="18" fill="#fbfcfa"></rect>
-
-            <text x="380" y="68" text-anchor="middle" font-size="17" font-weight="760" fill="#075541">ASSURANCE / OVERSIGHT</text>
-            <text x="380" y="94" text-anchor="middle" font-size="12" fill="#59635c">provenance &middot; authorship &middot; freshness &middot; security &middot; auditability &middot; ownership</text>
-
-            <rect x="52" y="120" width="656" height="286" rx="10" fill="#ffffff" stroke="#0f7b5f" stroke-width="2"></rect>
-            <text x="76" y="151" font-size="12" font-weight="700" fill="#075541">DSCE (PRONOUNCED "DICE")</text>
-
-            <g filter="url(#soft-shadow)">
-              <rect x="78" y="188" width="132" height="104" rx="8" fill="#ffffff" stroke="#dbe3dc"></rect>
-              <text x="144" y="228" text-anchor="middle" font-size="16" font-weight="760" fill="#17211b">Discovery</text>
-              <text x="144" y="254" text-anchor="middle" font-size="12" fill="#59635c">Where is it?</text>
-            </g>
-            <line x1="210" y1="240" x2="244" y2="240" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></line>
-            <g filter="url(#soft-shadow)">
-              <rect x="250" y="188" width="132" height="104" rx="8" fill="#075541" stroke="#075541"></rect>
-              <text x="316" y="228" text-anchor="middle" font-size="16" font-weight="760" fill="#ffffff">Semantic</text>
-              <text x="316" y="254" text-anchor="middle" font-size="12" fill="#d7eee6">What is it?</text>
-            </g>
-            <line x1="382" y1="240" x2="416" y2="240" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></line>
-            <g filter="url(#soft-shadow)">
-              <rect x="422" y="188" width="132" height="104" rx="8" fill="#075541" stroke="#075541"></rect>
-              <text x="488" y="228" text-anchor="middle" font-size="16" font-weight="760" fill="#ffffff">Context</text>
-              <text x="488" y="254" text-anchor="middle" font-size="12" fill="#d7eee6">How understood?</text>
-            </g>
-            <line x1="554" y1="240" x2="588" y2="240" stroke="#59635c" stroke-width="2" marker-end="url(#arrow)"></line>
-            <g filter="url(#soft-shadow)">
-              <rect x="594" y="188" width="88" height="104" rx="8" fill="#245f9b" stroke="#245f9b"></rect>
-              <text x="638" y="228" text-anchor="middle" font-size="14" font-weight="760" fill="#ffffff">Execution</text>
-              <text x="638" y="254" text-anchor="middle" font-size="11" fill="#dbeafe">What now?</text>
-            </g>
-
-            <path d="M78 330 L78 350 L554 350 L554 330" fill="none" stroke="#0f7b5f" stroke-width="2"></path>
-            <text x="316" y="378" text-anchor="middle" font-size="13" font-weight="700" fill="#075541">OpenGEO primarily standardises publisher declarations</text>
-
-            <text x="380" y="456" text-anchor="middle" font-size="17" font-weight="760" fill="#17211b">DSCE defines the AI interpretation chain.</text>
-            <text x="380" y="486" text-anchor="middle" font-size="17" font-weight="760" fill="#075541">Assurance governs every checkpoint.</text>
-            <text x="380" y="516" text-anchor="middle" font-size="12" fill="#59635c">Execution remains the responsibility of consuming systems.</text>
-          </svg>
+        <div class="dice-experience" aria-label="The GEO Gamble: an interactive OpenGEO problem and response pairing">
+          <div class="dice-intro">
+            <h2 class="dice-title">Play the GEO Gamble</h2>
+            <p class="dice-setup">One die reveals where AI can lose the publisher's meaning. The other shows how OpenGEO can respond.</p>
+          </div>
+          <div class="dice-action">
+            <button class="button primary" id="roll-dsce" type="button" disabled>Roll the Dice</button>
+          </div>
+          <div class="dice-viewport" id="dice-viewport">
+            <canvas class="dice-canvas" id="opengeo-dice" role="img" aria-label="Two three-dimensional dice representing a GEO question and its OpenGEO response"></canvas>
+            <p class="dice-fallback" id="dice-fallback">The GEO Gamble pairs an AI interpretation question with the relevant OpenGEO response.</p>
+          </div>
+          <div class="dice-result" id="dice-result" aria-live="polite">
+            <div>
+              <span class="dice-result-label">Problem</span>
+              <p id="dice-question"><strong>Who represents your organisation to AI?</strong> Without a direct declaration, intelligent systems reconstruct it from fragments.</p>
+            </div>
+            <div>
+              <span class="dice-result-label">Solution</span>
+              <p id="dice-response"><strong>The publisher declares the meaning.</strong> OpenGEO makes meaning and context explicit before execution begins.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -434,19 +506,23 @@
     <section>
       <div class="wrap">
         <h2 class="section-heading">Compatible discovery, independent execution</h2>
-        <p class="section-copy">OpenGEO does not require a single discovery mechanism. HTML alternate links can expose a page-level Semantic Twin. <code>geo.txt</code> can declare site-wide participation and defaults. <code>llms.txt</code> can provide orientation. ARD, MCP discovery, well-known resources, registries, APIs, and future mechanisms may point to OpenGEO resources. Support is engine-relative, so assessment asks which engines can see which layer.</p>
-        <div class="steps">
+        <p class="section-copy">OpenGEO does not require a single discovery mechanism. HTML alternate links, <code>geo.txt</code>, <code>llms.txt</code>, ARD, NLWeb, MCP discovery, well-known resources, registries, APIs, and future mechanisms may expose or point to OpenGEO resources. Support is engine-relative, so assessment asks which engines can see which layer. Any subsequent reasoning, response generation, tool use, or action remains the responsibility of the consuming system.</p>
+        <div class="steps four">
           <div class="step">
-            <strong>Alternate link</strong>
-            <p>A human-facing page can explicitly identify its colocated machine-readable representation.</p>
+            <strong>HTML and geo.txt</strong>
+            <p>An alternate link can identify a page-level Semantic Twin. <code>geo.txt</code> can declare site-wide OpenGEO participation and defaults.</p>
           </div>
           <div class="step">
-            <strong>ARD and other discovery</strong>
-            <p>External standards can own discovery, identity, trust handshakes, and capability declaration while pointing to OpenGEO resources.</p>
+            <strong>llms.txt</strong>
+            <p>A curated root-level orientation file can direct language models towards important resources and OpenGEO declarations. Claude and Perplexity honour <code>llms.txt</code> as a discovery and orientation mechanism.</p>
           </div>
           <div class="step">
-            <strong>MCP, APIs, and agents</strong>
-            <p>Optional execution systems may use OpenGEO declarations, but OpenGEO does not command or guarantee their behaviour.</p>
+            <strong>ARD</strong>
+            <p>ARD can own agentic resource discovery, identity, trust handshakes, and capability declaration while pointing to OpenGEO representations.</p>
+          </div>
+          <div class="step">
+            <strong>NLWeb</strong>
+            <p>NLWeb provides an open, model-agnostic path for discovering and interacting with site knowledge through natural-language endpoints, AgentFinder, MCP, and emerging A2A support.</p>
           </div>
         </div>
       </div>
@@ -492,5 +568,6 @@
       OpenGEO is published by Zahid Saleem. Built in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's <code>llms.txt</code> proposal and emerging Agentic Resource Discovery patterns.
     </div>
   </footer>
+  <script type="module" src="./assets/opengeo-dice.js"></script>
 </body>
 </html>
