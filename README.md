@@ -2,11 +2,32 @@
 
 > An open specification for publisher-owned semantic and contextual declarations for intelligent systems.
 
-OpenGEO allows publishers to declare, at the resource level, what an organisation, product, service, policy, location, article, offer, collection, or other entity is, and how it should be understood by intelligent systems.
+OpenGEO is about **Generative Engine Optimisation and AI interpretation**, not geolocation, maps, or geographic data.
+
+OpenGEO can describe a physical location as a resource, but it is not a geospatial or mapping standard.
+
+It allows publishers to declare, at the resource level, what an organisation, product, service, policy, location, article, offer, collection, or other entity is, and how it should be understood by intelligent systems.
 
 GEO is the practice. OpenGEO is the specification.
 
 OpenGEO is not primarily an AI Twin specification. A Semantic Twin is the reference implementation of OpenGEO, commonly expressed as Markdown with YAML front matter. The specification owns semantics and context, not syntax.
+
+## Problem Statement
+
+AI systems are no longer only indexing pages. They are interpreting organisations.
+
+When a user asks an AI system about a company, product, service, policy, advice journey, or offer, the answer may be reconstructed from search results, snippets, product feeds, third-party summaries, reviews, cached pages, screenshots, and platform-specific data.
+
+That indirect reconstruction can create drift:
+
+- organisational identity may be flattened or misdescribed;
+- product and service facts may lose their intended context;
+- sensitive journeys may be handled like ordinary commercial journeys;
+- canonical media may be omitted, substituted, or hallucinated;
+- stale or third-party information may be treated as current;
+- relationships between products, services, advice, policies, and locations may be lost.
+
+OpenGEO gives publishers a way to declare their own machine-readable meaning and interpretation context directly, so intelligent systems do not have to infer it only from fragments.
 
 ## Core Principle
 
