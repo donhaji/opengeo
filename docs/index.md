@@ -94,6 +94,8 @@ OpenGEO does not provide a complete governance, compliance, authentication, secu
 
 The human-facing resource contains an interactive explanation titled **Play the GEO Gamble**.
 
+One die asks why. The other shows how. OpenGEO lets the publisher declare the meaning before AI answers.
+
 The interaction uses two synchronised three-dimensional dice:
 
 - the problem die frames a question organisations should ask about AI interpretation;
