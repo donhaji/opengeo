@@ -45,7 +45,7 @@ Discovery mechanisms may find OpenGEO resources. Execution surfaces may interpre
 
 ## DSCE with Assurance Oversight
 
-OpenGEO is organised around the **DSCE** interpretation chain:
+OpenGEO is organised around the **DSCE** (pronounced "dice") interpretation chain:
 
 - **Discovery**
 - **Semantic**

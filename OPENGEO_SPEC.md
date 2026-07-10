@@ -49,7 +49,7 @@ OpenGEO gives publishers a way to declare semantic meaning and interpretation co
 
 ## 2. Conceptual Model: DSCE with Assurance Oversight
 
-OpenGEO is organised around the DSCE interpretation chain:
+OpenGEO is organised around the DSCE (pronounced "dice") interpretation chain:
 
 - Discovery;
 - Semantic;
