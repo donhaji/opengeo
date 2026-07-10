@@ -54,6 +54,18 @@ Being visible to AI is not the same as being understood correctly.
 
 OpenGEO gives publishers a direct declaration layer for the meaning and context they know best.
 
+## Who OpenGEO Is For
+
+OpenGEO is for people responsible for how an organisation is represented, understood, and trusted by AI systems.
+
+In OpenGEO, a publisher is any organisation that publishes information about itself or its resources. This includes businesses, retailers, healthcare providers, public bodies, charities, institutions, and digital services, not only media publishers.
+
+The primary audience includes people responsible for digital experience, brand, content, products, services, data, web architecture, governance, risk, and assurance.
+
+OpenGEO is also intended for the architects, engineers, content and product teams, governance owners, assessors, Context Engineering practitioners, and AI-system developers who publish, maintain, evaluate, or consume those declarations.
+
+AI engines and runtime platforms are important consumers of OpenGEO resources, but they are not the principal audience. OpenGEO begins from publisher sovereignty over publisher-owned meaning and context.
+
 ## Core Principle
 
 > OpenGEO defines what the publisher knows better than the execution surface.
