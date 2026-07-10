@@ -4,6 +4,8 @@
 
 AI is no longer merely indexing content; it is interpreting meaning.
 
+OpenGEO is about Generative Engine Optimisation and AI interpretation. It is not a geolocation, mapping, or geographic-data standard.
+
 For three decades, web publishing has centred on human-facing pages: layout, navigation, visual hierarchy, interaction, conversion, and brand expression through screens. That work remains essential. But intelligent systems do not primarily experience organisations through screens. They infer meaning from text, metadata, retrieval systems, APIs, search results, screenshots, scraped pages, platform-specific feeds, and generated summaries.
 
 This creates a structural gap. An organisation may know exactly who it is, what it offers, how its services relate, what context matters, and where sensitive interpretation is required. But an AI system must often reconstruct that meaning indirectly.
@@ -42,7 +44,7 @@ OpenGEO defines a way for publishers to declare organisational meaning and inter
 
 A resource may be a product, service, article, location, policy, offer, collection, person, department, organisation, or any other meaningful entity the publisher chooses to expose.
 
-OpenGEO separates four concerns:
+OpenGEO separates four concerns through the DSCE model, pronounced "dice":
 
 - **Discovery:** where the representation is and how an engine can find it through the mechanisms it supports.
 - **Semantics:** what the resource is.
@@ -50,6 +52,8 @@ OpenGEO separates four concerns:
 - **Execution:** what an AI system, assistant, agent, tool, or platform surface does with that information.
 
 OpenGEO defines the semantic and context layers. Discovery mechanisms and execution systems remain free to evolve.
+
+DSCE defines the AI interpretation chain. Assurance governs every checkpoint.
 
 ## Semantic Twins
 
@@ -93,6 +97,8 @@ OpenGEO makes the publisher's declared meaning and context easier to find, inspe
 OpenGEO declarations are governance-relevant artefacts.
 
 They should be published under assurance controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
+
+Assurance is not a fifth layer after Discovery, Semantics, Context, and Execution. It is the oversight concern around the chain.
 
 This does not mean OpenGEO provides AI governance. It means publisher-declared AI meaning creates a surface that must be governed.
 
