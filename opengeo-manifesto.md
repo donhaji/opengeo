@@ -71,9 +71,9 @@ The primary innovation of OpenGEO is the Context Layer.
 
 Publishers do not only need to declare facts. They also need to declare interpretation context: tone, intent, sensitivity, guidance, provenance, volatility, persona, and escalation context.
 
-The `context.*` namespace provides a coherent way to publish these declarations.
+The `context.*` namespace provides a coherent way to publish these declarations. In the Markdown reference representation, context is expressed as a nested YAML mapping, while the semantic declarations it frames remain direct properties of the resource.
 
-Context is not a prompt and not a command. It informs intelligent systems while preserving execution autonomy. It helps reduce unnecessary inference by telling the system what the publisher is uniquely qualified to know.
+Context is not a prompt format or runtime policy override. It may include publisher-authored instructions that a consuming system maps into its own prompts, routing, tools, or agent configuration while preserving execution autonomy. This can let one execution surface adopt resource-appropriate interpretation modes without requiring a separately implemented agent for every resource or journey.
 
 ## Boundaries
 
@@ -88,6 +88,8 @@ OpenGEO is intentionally modest. It provides a common semantic and contextual fo
 | A complement to discovery systems | A replacement for ARD, MCP, or `llms.txt` |
 | Opt-in by design | A moderation or enforcement system |
 
+OpenGEO sits within a broader open-agentic web movement. It acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), complements [ARD](https://agenticresourcediscovery.org/), an open working-group specification with participants including Google, and can be consumed through execution systems such as [Microsoft's NLWeb](https://github.com/microsoft/NLWeb).
+
 Trust, verification, ranking, and policy remain the responsibility of consuming systems, platforms, regulators, and users.
 
 OpenGEO makes the publisher's declared meaning and context easier to find, inspect, compare, and evaluate.
@@ -96,11 +98,19 @@ OpenGEO makes the publisher's declared meaning and context easier to find, inspe
 
 OpenGEO declarations are governance-relevant artefacts.
 
-They should be published under assurance controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
+They should be published under assurance controls for authority, provenance, freshness, ownership, review, security, auditability, and cross-surface material equivalence where a corresponding publisher-controlled surface exists.
+
+These assurance vectors expose evidence around publisher-declared truth; they do not make OpenGEO an arbiter or certifier of objective truth. Semantic Twins may also represent authenticated, personalised, dynamically composed, or publisher-controlled resources with no corresponding human-facing projection.
 
 Assurance is not a fifth layer after Discovery, Semantics, Context, and Execution. It is the oversight concern around the chain.
 
 This does not mean OpenGEO provides AI governance. It means publisher-declared AI meaning creates a surface that must be governed.
+
+## Accountability
+
+DSCE gives organisations an accountability map as well as an interpretation model. Discovery failures belong with the teams responsible for channels and discoverability. Semantic failures belong with source owners and semantic publishing. Context failures belong with the people responsible for publisher intent and domain-appropriate interpretation. Execution failures belong with runtime and AI-system owners. Assurance belongs across risk, compliance, legal, audit, security, privacy, professional governance, brand assurance, and the CISO.
+
+OpenGEO does not prescribe job titles. Context Architecture may be an individual role or a distributed function spanning brand, service, content, domain expertise, governance, and AI. Its responsibility is to translate publisher intent, sensitivity, and service expectations into governed context declarations. Semantic publishing bridges publisher-controlled sources of truth and the machine-facing declaration layer without reverse-engineering organisational meaning from rendered HTML.
 
 ## The Path Forward
 

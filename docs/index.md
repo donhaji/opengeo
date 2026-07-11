@@ -1,5 +1,5 @@
 ---
-opengeo: 0.1
+opengeo: "0.1.0"
 type: specification
 id: https://donhaji.github.io/opengeo/
 canonical_url: https://donhaji.github.io/opengeo/
@@ -14,17 +14,23 @@ same_as:
 related_to:
   - https://github.com/donhaji/opengeo/blob/main/OPENGEO_SPEC.md
   - https://github.com/donhaji/opengeo/blob/main/opengeo-manifesto.md
-context.profile: Open specification for publisher-owned, resource-level semantic and contextual declarations.
-context.persona: OpenGEO specification publisher
-context.intent: specification_discovery
-context.tone: professional, precise, explanatory, measured, non-promotional
-context.sensitivity: low
-context.volatility: working_draft
-context.provenance: Publisher-authored Semantic Twin maintained with the human-facing OpenGEO GitHub Pages resource.
-context.guidance: >-
-  Explain the publisher-control problem before implementation details. Preserve the distinction between OpenGEO as the specification and Semantic Twins as its v0.1 reference implementation. Treat DSCE as an interpretation chain, with Assurance as cross-cutting oversight rather than a fifth layer. Do not imply that OpenGEO controls, guarantees, or overrides execution-surface behaviour.
-context.instructions: >-
-  Use the exact name OpenGEO. Interpret GEO as Generative Engine Optimisation, not geolocation or geographic data. Describe Discovery as mechanism-compatible in the specification and engine-relative in assessment. Describe Semantic as publisher-declared facts and relationships, Context as the publisher-declared interpretation envelope, and Execution as the responsibility of consuming systems. State that DSCE is pronounced "dice". Present Assurance as governance-relevant oversight across every checkpoint, not as a fifth DSCE layer. Treat the GEO Gamble as an explanatory interaction whose outcomes map common questions to relevant interpretation checkpoints; it is not a scoring system, prediction, or guarantee of AI behaviour.
+context:
+  profile: Open specification for publisher-owned, resource-level semantic and contextual declarations.
+  persona: OpenGEO specification publisher
+  intent: specification_discovery
+  tone:
+    - professional
+    - precise
+    - explanatory
+    - measured
+    - non-promotional
+  sensitivity: low
+  volatility: working_draft
+  provenance: Publisher-authored Semantic Twin maintained with the human-facing OpenGEO GitHub Pages resource.
+  guidance: >-
+    Explain the publisher-control problem before implementation details. Preserve the distinction between OpenGEO as the specification and Semantic Twins as its v0.1 reference implementation. Treat DSCE as an interpretation chain, with Assurance as cross-cutting oversight rather than a fifth layer. Do not imply that OpenGEO controls, guarantees, or overrides execution-surface behaviour.
+  instructions: >-
+    Use the exact name OpenGEO. Interpret GEO as Generative Engine Optimisation, not geolocation or geographic data. Describe Discovery as mechanism-compatible in the specification and engine-relative in assessment. Describe Semantic as publisher-declared facts and relationships, Context as the publisher-declared interpretation envelope, and Execution as the responsibility of consuming systems. State that DSCE is pronounced "dice". Present Assurance as governance-relevant oversight across every checkpoint, not as a fifth DSCE layer. Treat the GEO Gamble as an explanatory interaction whose outcomes map common questions to relevant interpretation checkpoints; it is not a scoring system, prediction, or guarantee of AI behaviour.
 ---
 
 # OpenGEO
@@ -98,9 +104,25 @@ OpenGEO declarations are governance-relevant artefacts. They should be published
 - freshness and volatility;
 - security and safe publication;
 - auditability and change history;
-- material equivalence with human-facing resources.
+- cross-surface material equivalence where a corresponding publisher-controlled surface exists.
 
 OpenGEO does not provide a complete governance, compliance, authentication, security, or trust framework. Consuming systems remain responsible for verification and trust decisions.
+
+### Enterprise Accountability
+
+DSCE helps an organisation identify who should diagnose and remediate a failure at each checkpoint. OpenGEO does not prescribe job titles; publishers map the responsibilities to their existing executive and operational structures.
+
+| Area | Executive accountability may include | Operational ownership may include |
+| :--- | :--- | :--- |
+| Discovery | Digital, technology, information, or channel leadership | Web platform, search/GEO, architecture, integration, and channel teams |
+| Semantic | Digital, information, data, product, service, or domain leadership | CMS and content platforms, knowledge architecture, data engineering, product or service data, and source owners |
+| Context | Brand, customer, service, clinical, academic, policy, communications, or domain leadership | Context Architecture, content strategy, experience design, domain experts, service owners, and governance partners |
+| Execution | Technology, information, digital, product, or AI leadership | AI platforms, agent engineering, product engineering, security, safety, and runtime operations |
+| Assurance | Risk, compliance, legal, audit, governance, clinical or professional leadership, and the CISO | Risk, compliance, audit, security, privacy, clinical or professional governance, brand assurance, and evaluation teams |
+
+Context Architecture may be an individual role or a distributed function. It translates publisher intent, domain sensitivity, service expectations, and interpretation requirements into governed context declarations. Semantic publishing connects publisher-controlled sources of truth to Semantic Twins while preserving provenance, relationships, freshness, and cross-surface material equivalence.
+
+The human-facing DSCE model presents Discovery, Semantic, Context, and Execution as interactive cards with Assurance spanning every checkpoint. Each card initially shows the checkpoint question and OpenGEO answer. Selecting a checkpoint flips only that card to show its executive and operational ownership; selecting it again returns to the model. The Assurance panel uses the same interaction for its cross-cutting owners, including the CISO. The cards support pointer, Enter, and Space interaction, expose their state to assistive technology, and remove transition animation when reduced motion is preferred.
 
 ## The GEO Gamble
 
@@ -227,7 +249,7 @@ The relationship is declared from the human-facing page using:
 
 This Semantic Twin is publisher-authored. It is not scraped or reverse-engineered from the rendered HTML.
 
-The human-facing page and this machine-facing representation are maintained as equivalent projections in the same repository. Material claims, conceptual boundaries, game outcomes, discovery relationships, and versioned meaning should be updated together.
+The human-facing page and this machine-facing representation are maintained as materially equivalent projections in the same repository. Material claims, conceptual boundaries, game outcomes, discovery relationships, and versioned meaning should be updated together. OpenGEO also permits resources with no corresponding human-facing projection.
 
 Visual presentation, animation, layout, and interaction mechanics may differ where they do not change material meaning.
 
@@ -236,21 +258,23 @@ Visual presentation, animation, layout, and interaction mechanics may differ whe
 OpenGEO does not require one universal discovery mechanism.
 
 - HTML alternate links can expose a page-level Semantic Twin.
-- `geo.txt` can declare site-wide OpenGEO participation and defaults.
-- `llms.txt` can provide a curated root-level orientation file. Claude and Perplexity honour it as a discovery and orientation mechanism.
-- ARD can provide agentic discovery, identity, trust handshakes, and capability declarations.
-- NLWeb can provide an open, model-agnostic discovery and interaction path through natural-language endpoints, AgentFinder, MCP, and emerging A2A support.
+- A conforming OpenGEO site publishes `/.well-known/geo.txt` to declare site-wide participation, discovery roots, and defaults. Individual Twins remain independently interpretable.
+- [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt) can provide a curated root-level orientation file. Claude and Perplexity honour it as a discovery and orientation mechanism.
+- [ARD](https://agenticresourcediscovery.org/), developed by an open working group with participants including Google, Microsoft, and others, can provide agentic resource discovery.
+- [NLWeb](https://github.com/microsoft/NLWeb), an open project developed by Microsoft, can provide a model-agnostic discovery and interaction path through natural-language and MCP-compatible endpoints.
 - MCP discovery, well-known resources, registries, APIs, and future mechanisms may point to OpenGEO resources.
 
 Discovery support is engine-relative and observable. Assessment asks which engines can see which representation and layer.
 
 ## Context Architecture
 
-The `context.*` namespace defines the publisher's interpretation envelope around a resource.
+The `context.*` namespace defines the publisher's interpretation envelope around a resource. Dotted paths identify abstract properties; Markdown/YAML expresses them as a nested `context` mapping.
 
 Context can declare intent, tone, sensitivity, guidance, provenance, volatility, persona, profile, and publisher-authored interpretive instructions.
 
-Context is declarative. It is not a prompt, command, policy override, or guarantee of execution behaviour.
+Context is declarative. It is not a prompt format, runtime policy override, or guarantee of execution behaviour. A shared execution surface may use resource context to adopt an appropriate persona and interpretation mode without requiring a separately implemented agent for every resource.
+
+Site defaults may be declared through `geo.txt`; resource context can override them. Publishers should explicitly declare persona crossover conditions where sensitive and commercial contexts could otherwise conflict. The execution surface remains responsible for routing and enforcement.
 
 ## OpenGEO Is
 
@@ -275,13 +299,13 @@ Context is declarative. It is not a prompt, command, policy override, or guarant
 
 ## Canonical Documents
 
-- [OpenGEO Specification v0.1](https://github.com/donhaji/opengeo/blob/main/OPENGEO_SPEC.md)
+- [OpenGEO Specification 0.1.0](https://github.com/donhaji/opengeo/blob/main/OPENGEO_SPEC.md)
 - [OpenGEO Manifesto](https://github.com/donhaji/opengeo/blob/main/opengeo-manifesto.md)
 - [OpenGEO repository](https://github.com/donhaji/opengeo)
 
 ## Acknowledgement
 
-OpenGEO builds in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's `llms.txt` proposal.
+OpenGEO acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), which helped establish the case for publisher-curated, LLM-friendly web resources. OpenGEO builds on that direction with resource-level semantic and contextual declarations.
 
 ## Licence
 

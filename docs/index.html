@@ -335,6 +335,146 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
+    .dsce-cards {
+      perspective: 1200px;
+    }
+
+    .dsce-card {
+      position: relative;
+      min-height: 300px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      transform-style: preserve-3d;
+      transition: transform 560ms cubic-bezier(0.2, 0.75, 0.25, 1);
+      cursor: pointer;
+    }
+
+    .dsce-card.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .dsce-card:hover .dsce-face,
+    .dsce-card:focus-visible .dsce-face,
+    .assurance-flip:hover .assurance-face,
+    .assurance-flip:focus-visible .assurance-face {
+      border-color: var(--green);
+      box-shadow: 0 14px 34px rgba(23, 33, 27, 0.13);
+    }
+
+    .dsce-card:focus-visible,
+    .assurance-flip:focus-visible {
+      outline: 3px solid rgba(15, 123, 95, 0.35);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+
+    .dsce-face {
+      position: absolute;
+      inset: 0;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      box-shadow: 0 10px 28px rgba(23, 33, 27, 0.07);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .dsce-face.back {
+      transform: rotateY(180deg);
+      background: var(--green-dark);
+    }
+
+    .dsce-face.front,
+    .dsce-face.back {
+      display: grid;
+      grid-template-rows: auto 1fr 1fr;
+      gap: 12px;
+    }
+
+    .dsce-face.back strong,
+    .dsce-face.back p,
+    .dsce-face.back .owner-label {
+      color: #ffffff;
+    }
+
+    .dsce-face p {
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .dsce-face.front p + p,
+    .dsce-face.back p + p {
+      margin-top: 0;
+    }
+
+    .owner-label {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.74;
+    }
+
+    .assurance-flip {
+      position: relative;
+      min-height: 116px;
+      margin-top: 16px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .assurance-inner {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform 560ms cubic-bezier(0.2, 0.75, 0.25, 1);
+    }
+
+    .assurance-inner.is-flipped {
+      transform: rotateX(180deg);
+    }
+
+    .assurance-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: minmax(150px, 0.28fr) 1fr;
+      align-items: center;
+      gap: 22px;
+      padding: 20px;
+      border: 1px solid #d8c28e;
+      border-radius: 10px;
+      background: #fffaf0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .assurance-face.back {
+      transform: rotateX(180deg);
+      color: #ffffff;
+      background: #73551c;
+      border-color: #73551c;
+    }
+
+    .assurance-face strong {
+      color: #73551c;
+      font-size: 1.05rem;
+    }
+
+    .assurance-face.back strong,
+    .assurance-face.back p {
+      color: #ffffff;
+    }
+
+    .assurance-face p {
+      margin: 0;
+      color: var(--muted);
+    }
+
     code {
       font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
       font-size: 0.92em;
@@ -354,6 +494,20 @@
       .steps.four,
       .dice-result {
         grid-template-columns: 1fr;
+      }
+
+      .dsce-card {
+        min-height: 230px;
+      }
+
+      .assurance-flip {
+        min-height: 180px;
+      }
+
+      .assurance-face {
+        grid-template-columns: 1fr;
+        align-content: center;
+        gap: 8px;
       }
 
       .hero {
@@ -400,6 +554,13 @@
 
       .button {
         width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dsce-card,
+      .assurance-inner {
+        transition: none;
       }
     }
   </style>
@@ -481,22 +642,69 @@
       <div class="wrap">
         <h2 class="section-heading">DSCE with Assurance Oversight</h2>
         <p class="section-copy">DSCE, pronounced "dice", describes how intelligent systems locate, understand, contextualise, and act upon publisher-controlled information. OpenGEO primarily standardises declarations across Discovery, Semantic, and Context. Execution is informed by those declarations but remains outside the specification.</p>
-        <div class="steps four">
-          <div class="step">
-            <strong>Discovery</strong>
-            <p>Where is the representation, and can this engine find it through a mechanism it supports?</p>
+        <p class="context-proof">Select any checkpoint card to see who owns it. Select it again to return to the model.</p>
+        <div id="dsce-accountability">
+          <div class="steps four dsce-cards">
+            <div class="step dsce-card" role="button" tabindex="0" aria-pressed="false" aria-label="Discovery: show ownership">
+              <div class="dsce-face front">
+                <strong>Discovery</strong>
+                <p><span class="owner-label">Question</span>Where is the representation, and can this engine find it through a mechanism it supports?</p>
+                <p><span class="owner-label">OpenGEO answer</span>Expose the declaration through supported discovery mechanisms and assess which engines can reach it.</p>
+              </div>
+              <div class="dsce-face back" aria-hidden="true">
+                <strong>Discovery ownership</strong>
+                <p><span class="owner-label">Executive</span>Digital, technology, information, or channel leadership.</p>
+                <p><span class="owner-label">Operational</span>Web platform, search/GEO, architecture, integration, and channel teams.</p>
+              </div>
+            </div>
+            <div class="step dsce-card" role="button" tabindex="0" aria-pressed="false" aria-label="Semantic: show ownership">
+              <div class="dsce-face front">
+                <strong>Semantic</strong>
+                <p><span class="owner-label">Question</span>What is this resource, which facts are declared, and how does it relate to other resources?</p>
+                <p><span class="owner-label">OpenGEO answer</span>The publisher declares canonical identity, meaning, media, provenance, and resource relationships.</p>
+              </div>
+              <div class="dsce-face back" aria-hidden="true">
+                <strong>Semantic ownership</strong>
+                <p><span class="owner-label">Executive</span>Digital, information, data, product, service, or domain leadership.</p>
+                <p><span class="owner-label">Operational</span>Content platforms, knowledge and data engineering, product or service data, and source owners.</p>
+              </div>
+            </div>
+            <div class="step dsce-card" role="button" tabindex="0" aria-pressed="false" aria-label="Context: show ownership">
+              <div class="dsce-face front">
+                <strong>Context</strong>
+                <p><span class="owner-label">Question</span>How should the resource be understood, including intent, tone, sensitivity, and guidance?</p>
+                <p><span class="owner-label">OpenGEO answer</span>The publisher declares the interpretation envelope it knows better than the execution surface.</p>
+              </div>
+              <div class="dsce-face back" aria-hidden="true">
+                <strong>Context ownership</strong>
+                <p><span class="owner-label">Executive</span>Brand, customer, service, clinical, academic, policy, communications, or domain leadership.</p>
+                <p><span class="owner-label">Operational</span>Context Architecture, experience design, domain experts, service owners, and governance teams.</p>
+              </div>
+            </div>
+            <div class="step dsce-card" role="button" tabindex="0" aria-pressed="false" aria-label="Execution: show ownership">
+              <div class="dsce-face front">
+                <strong>Execution</strong>
+                <p><span class="owner-label">Question</span>What does the consuming system actually do through reasoning, retrieval, rendering, tools, or action?</p>
+                <p><span class="owner-label">OpenGEO answer</span>The consuming system remains responsible for behaviour, informed by the publisher's declarations.</p>
+              </div>
+              <div class="dsce-face back" aria-hidden="true">
+                <strong>Execution ownership</strong>
+                <p><span class="owner-label">Executive</span>Technology, information, digital, product, or AI leadership.</p>
+                <p><span class="owner-label">Operational</span>AI platforms, agent and product engineering, security, safety, and runtime operations.</p>
+              </div>
+            </div>
           </div>
-          <div class="step">
-            <strong>Semantic</strong>
-            <p>What is this resource, which facts are declared, and how does it relate to other resources?</p>
-          </div>
-          <div class="step">
-            <strong>Context</strong>
-            <p>How should the resource be understood, including intent, tone, sensitivity, and guidance?</p>
-          </div>
-          <div class="step">
-            <strong>Execution</strong>
-            <p>What does the consuming system actually do through reasoning, retrieval, rendering, tools, or action?</p>
+          <div class="assurance-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Assurance: show ownership">
+            <div class="assurance-inner">
+              <div class="assurance-face front">
+                <strong>Assurance oversight</strong>
+                <p>Authority, provenance, freshness, equivalence, consistency, completeness, ownership, security, and auditability across every checkpoint.</p>
+              </div>
+              <div class="assurance-face back" aria-hidden="true">
+                <strong>Assurance ownership</strong>
+                <p>Risk, compliance, legal, audit, governance, security, privacy, clinical or professional leadership, brand assurance, evaluation teams, and the CISO.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -533,7 +741,7 @@
     <section class="band">
       <div class="wrap">
         <h2 class="section-heading">Context architecture</h2>
-        <p class="section-copy">The <code>context.*</code> namespace lets publishers declare the interpretation envelope around a resource: intent, tone, sensitivity, guidance, provenance, volatility, persona, or domain-specific context. A support or sensitive-care journey should not be interpreted like an ordinary commercial journey. Context informs the consuming system without becoming a prompt format or overriding its autonomy.</p>
+        <p class="section-copy">The <code>context.*</code> namespace lets publishers declare the interpretation envelope around a resource: intent, tone, sensitivity, guidance, provenance, volatility, persona, instructions, or domain-specific context. In the Markdown reference representation it is expressed as nested YAML. A support or sensitive-care journey should not be interpreted like an ordinary commercial journey. Context can configure a shared execution surface for the resource without becoming a prompt format, runtime policy override, or guarantee of behaviour.</p>
         <p class="context-proof">This page publishes its own context declarations. <a href="https://donhaji.github.io/opengeo/index.md">Inspect them in the OpenGEO Semantic Twin</a>.</p>
       </div>
     </section>
@@ -545,19 +753,19 @@
         <div class="steps four">
           <div class="step">
             <strong>HTML and geo.txt</strong>
-            <p>An alternate link can identify a page-level Semantic Twin. <code>geo.txt</code> can declare site-wide OpenGEO participation and defaults.</p>
+            <p>An alternate link can identify a page-level Semantic Twin. A conforming OpenGEO site publishes <code>/.well-known/geo.txt</code> to declare site-wide participation, discovery roots, and defaults; individual Twins remain independently interpretable.</p>
           </div>
           <div class="step">
-            <strong>llms.txt</strong>
-            <p>A curated root-level orientation file can direct language models towards important resources and OpenGEO declarations. Claude and Perplexity honour <code>llms.txt</code> as a discovery and orientation mechanism.</p>
+            <strong><a href="https://www.answer.ai/posts/2024-09-03-llmstxt">llms.txt</a></strong>
+            <p>Jeremy Howard and Answer.AI's proposal provides a curated root-level orientation file that can direct language models towards important resources and OpenGEO declarations. Claude and Perplexity honour <code>llms.txt</code> as a discovery and orientation mechanism.</p>
           </div>
           <div class="step">
-            <strong>ARD</strong>
-            <p>ARD can own agentic resource discovery, identity, trust handshakes, and capability declaration while pointing to OpenGEO representations.</p>
+            <strong><a href="https://agenticresourcediscovery.org/">ARD</a></strong>
+            <p>Developed by an open working group with participants including Google, Microsoft, and others, ARD can provide agentic resource discovery while pointing to OpenGEO representations.</p>
           </div>
           <div class="step">
-            <strong>NLWeb</strong>
-            <p>NLWeb provides an open, model-agnostic path for discovering and interacting with site knowledge through natural-language endpoints, AgentFinder, MCP, and emerging A2A support.</p>
+            <strong><a href="https://github.com/microsoft/NLWeb">NLWeb</a></strong>
+            <p>Developed by Microsoft as an open project, NLWeb provides a model-agnostic path for discovering and interacting with site knowledge through natural-language and MCP-compatible endpoints.</p>
           </div>
         </div>
       </div>
@@ -566,7 +774,8 @@
     <section class="band">
       <div class="wrap">
         <h2 class="section-heading">Assurance across every checkpoint</h2>
-        <p class="section-copy">OpenGEO declarations are governance-relevant artefacts. They should be published with controls for provenance, authorship, freshness, review, security, auditability, ownership, and equivalence with human-facing resources. Assurance is not a fifth DSCE layer, and OpenGEO does not claim to provide a complete governance, compliance, authentication, or security framework.</p>
+        <p class="section-copy">OpenGEO declarations are governance-relevant artefacts. Assurance considers authority, provenance, freshness, cross-surface material equivalence, consistency, completeness, ownership, security, review, and auditability. These vectors expose evidence around publisher-declared truth; they do not certify objective truth. Assurance is not a fifth DSCE layer, and OpenGEO does not claim to provide a complete governance, compliance, authentication, or security framework.</p>
+        <p class="section-copy">OpenGEO does not prescribe job titles. Context Architecture and semantic publishing may be individual roles or distributed organisational functions. The interactive DSCE model above connects each checkpoint directly to its executive and operational accountability.</p>
       </div>
     </section>
 
@@ -600,9 +809,10 @@
 
   <footer>
     <div class="wrap">
-      OpenGEO is published by Zahid Saleem. Built in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's <code>llms.txt</code> proposal and emerging Agentic Resource Discovery patterns.
+      OpenGEO is published by Zahid Saleem. It acknowledges <a href="https://www.answer.ai/posts/2024-09-03-llmstxt">Jeremy Howard and Answer.AI's <code>llms.txt</code> proposal</a> and is designed to complement open-agentic web initiatives including <a href="https://agenticresourcediscovery.org/">ARD</a> and <a href="https://github.com/microsoft/NLWeb">Microsoft's NLWeb</a>. No affiliation or endorsement is implied.
     </div>
   </footer>
   <script type="module" src="./assets/opengeo-dice.js"></script>
+  <script src="./assets/dsce-accountability.js"></script>
 </body>
 </html>

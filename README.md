@@ -87,7 +87,7 @@ Assessment asks the same questions engine by engine: can this engine find it, un
 - Resource-level
 - Implementation-agnostic
 - Execution-independent
-- Compatible with ARD, `llms.txt`, MCP discovery, APIs, and other discovery or execution systems
+- Compatible with [ARD](https://agenticresourcediscovery.org/), [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), [Microsoft's NLWeb](https://github.com/microsoft/NLWeb), MCP discovery, APIs, and other discovery or execution systems
 - Opt-in by design
 
 ## OpenGEO Is Not
@@ -104,7 +104,7 @@ Assessment asks the same questions engine by engine: can this engine find it, un
 
 ## Context Architecture
 
-The `context.*` namespace is a first-class part of OpenGEO.
+The `context.*` namespace is a first-class part of OpenGEO. Dotted paths identify properties in the abstract model; the Markdown/YAML reference representation uses a nested `context` mapping.
 
 Context declarations define the publisher's interpretation envelope around a resource. They can describe tone, intent, sensitivity, guidance, provenance, volatility, persona, profile, or domain-specific context.
 
@@ -113,11 +113,21 @@ Context is declarative. It informs intelligent systems while preserving executio
 Example:
 
 ```yaml
-context.intent: support
-context.tone: calm, compassionate, non-commercial
-context.sensitivity: high
-context.guidance: Prioritise service information, eligibility, human handoff, and safety qualifiers.
+context:
+  persona: palliative_care_support
+  intent: care_navigation
+  tone:
+    - calm
+    - compassionate
+    - clinically appropriate
+  sensitivity: high
+  guidance: Prioritise service information, eligibility, human handoff, and safety qualifiers.
+  instructions: >-
+    Prioritise clinical care and support services. Do not introduce
+    commercial products unless the user requests relevant product help.
 ```
+
+`context.instructions` is publisher-authored contextual direction, not a prompt format or an override of runtime policy. A shared execution surface may use resource-specific context to adopt an appropriate persona and interpretation mode without requiring a separately implemented agent for every resource or journey.
 
 ## Semantic Twin Reference Implementation
 
@@ -158,15 +168,15 @@ The primary page-level discovery mechanism is the standard HTML alternate link:
 
 ### `geo.txt`
 
-`/.well-known/geo.txt` is the site-wide OpenGEO participation declaration and default-context file.
+`/.well-known/geo.txt` is required for a conforming OpenGEO site. It is the site-wide participation declaration, discovery root, and default-context file. Individual Semantic Twins remain independently interpretable, and resource-level context may override site defaults.
 
 ### `llms.txt`
 
-OpenGEO complements `llms.txt`, which can act as an orientation or root index for language models.
+OpenGEO complements [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), which can act as an orientation or root index for language models.
 
-### ARD and MCP Discovery
+### ARD, NLWeb, and MCP Discovery
 
-Agentic Resource Discovery, MCP discovery, `.well-known` resources, registries, and other mechanisms may point to OpenGEO resources.
+[Agentic Resource Discovery (ARD)](https://agenticresourcediscovery.org/), developed by an open working group with participants including Google, Microsoft, and others, may point to OpenGEO resources. [NLWeb](https://github.com/microsoft/NLWeb), an open project developed by Microsoft, provides natural-language interfaces and MCP-compatible access to site knowledge. MCP discovery, `.well-known` resources, registries, and other mechanisms may also point to OpenGEO resources.
 
 These systems own discovery and capability handshaking. OpenGEO owns semantic and contextual declarations.
 
@@ -174,20 +184,44 @@ These systems own discovery and capability handshaking. OpenGEO owns semantic an
 
 Assurance is a cross-cutting concern around the DSCE model, not a fifth layer.
 
-OpenGEO declarations are governance-relevant artefacts. They should be published with appropriate controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
+OpenGEO declarations are governance-relevant artefacts. They should be published with appropriate controls for authority, provenance, freshness, cross-surface material equivalence, consistency, completeness, ownership, security, review, and auditability. These assurance vectors expose evidence around publisher-declared truth; they do not certify objective truth.
+
+## Enterprise Accountability
+
+DSCE helps organisations assign diagnosis and remediation to the right owners rather than treating every AI-representation issue as a model or engineering failure. OpenGEO does not prescribe job titles; publishers map each checkpoint to their existing structure.
+
+| Area | Executive accountability may include | Typical operational owners |
+| :--- | :--- | :--- |
+| Discovery | Digital, technology, information, or channel leadership | Web platform, search/GEO, architecture, integration, and channel teams |
+| Semantic | Digital, information, data, product, service, or domain leadership | CMS and content platforms, knowledge architecture, data engineering, product or service data, and source owners |
+| Context | Brand, customer, service, clinical, academic, policy, communications, or domain leadership | Context Architecture, content strategy, experience design, domain experts, service owners, and governance partners |
+| Execution | Technology, information, digital, product, or AI leadership | AI platforms, agent engineering, product engineering, security, safety, and runtime operations |
+| Assurance | Risk, compliance, legal, audit, governance, clinical or professional leadership, and the CISO | Risk, compliance, audit, security, privacy, clinical or professional governance, brand assurance, and evaluation teams |
+
+Context Architecture may be owned by an individual or a distributed function. It translates publisher intent, domain sensitivity, service expectations, and interpretation requirements into governed `context` declarations. Semantic publishing connects publisher-controlled sources of truth to Semantic Twins while preserving provenance, relationships, freshness, and cross-surface material equivalence.
+
+## Versioning and Extensibility
+
+OpenGEO uses Semantic Versioning for the semantic model. A declaration identifies the model it uses with a quoted value such as:
+
+```yaml
+opengeo: "0.1.0"
+```
+
+Publishers may add semantic and contextual properties without mandatory namespacing. Communities may develop reusable profiles or namespaces and propose broadly useful additions to the deliberately small OpenGEO core.
 
 OpenGEO does not provide AI governance, compliance, or authentication by itself. It provides declarations and metadata that can support auditability and external verification.
 
 ## Document Index
 
-- [OPENGEO_SPEC.md](OPENGEO_SPEC.md): The working v0.1 technical specification.
+- [OPENGEO_SPEC.md](OPENGEO_SPEC.md): The working OpenGEO 0.1.0 technical specification.
 - [opengeo-manifesto.md](opengeo-manifesto.md): The strategic rationale for publisher-owned semantic and contextual declarations.
 - [docs/index.html](docs/index.html): GitHub Pages landing page with an architecture diagram.
 - [LICENSE](LICENSE): MIT license for reference implementation code.
 
 ## Acknowledgements
 
-OpenGEO builds in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's `llms.txt` proposal.
+OpenGEO acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), which helped establish the case for publisher-curated, LLM-friendly web resources. OpenGEO builds on that direction with resource-level semantic and contextual declarations.
 
 ## Licence
 

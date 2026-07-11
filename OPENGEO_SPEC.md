@@ -1,4 +1,4 @@
-# OpenGEO Specification v0.1
+# OpenGEO Specification 0.1.0
 
 **Author:** Zahid Saleem  
 **Date:** 2026-07-05  
@@ -9,7 +9,7 @@
 
 ## Changelog
 
-**v0.1 (2026-07-05)** - Rescoped working draft. Defines OpenGEO as an open specification for publisher-owned semantic and contextual declarations for intelligent systems. Separates the architecture into discovery, semantic, context, and execution layers. Positions the Semantic Twin as the reference implementation, not the specification itself.
+**0.1.0 (2026-07-11)** - Rescoped working draft. Defines OpenGEO as an open specification for publisher-owned semantic and contextual declarations for intelligent systems. Separates the architecture into discovery, semantic, context, and execution layers. Defines nested YAML for the reference representation, Semantic Versioning, context inheritance, cross-surface equivalence, assurance vectors, and site participation through `geo.txt`. Positions the Semantic Twin as the reference implementation, not the specification itself.
 
 ---
 
@@ -242,16 +242,17 @@ Where a resource has a human-facing URL, the OpenGEO representation should refer
 
 ### 4.2 Core Semantic Fields
 
-The reference representation uses the following core fields:
+The reference representation uses the following core fields. This table defines the OpenGEO core semantic fields and their requirements; it is not a closed vocabulary. Publishers MAY add semantic properties appropriate to their resources and domains.
 
 | Field | Requirement | Description |
 | :--- | :--- | :--- |
-| `opengeo` | required | OpenGEO version used by the representation. |
+| `opengeo` | required | Semantic Version of the OpenGEO semantic model used by the declaration. |
 | `type` | required | Resource type, such as `organisation`, `brand`, `product`, `product-listing`, `service`, `location`, `article`, `collection`, `offer`, or `policy`. |
 | `id` | required | Stable absolute URL identifying the semantic resource. |
 | `name` | required | Human-readable resource name. |
 | `description` | required | Concise resource description. |
-| `updated` | required | Date or timestamp of last semantic update. |
+| `updated` | required | Date or timestamp when material semantic or contextual content was last changed, refreshed, or reviewed. |
+| `generated` | optional | Date or timestamp when this particular representation was produced. It does not replace `updated`. |
 | `canonical_url` | recommended | Human-facing canonical URL, if one exists. |
 | `source_url` | recommended | Publisher source from which the declaration was generated. |
 | `publisher` | recommended | Organisation responsible for the declaration. |
@@ -293,6 +294,14 @@ image_alt: Example Product front pack
 
 The semantic layer carries media URLs and descriptions. It should not embed image bytes. Rendering, fetching, transformation, or host-specific image blocks belong to the execution layer.
 
+The Markdown reference representation may also embed canonical media in its body:
+
+```markdown
+![Example Product front pack](https://cdn.example.com/products/example-product-front.jpg)
+```
+
+The structured declaration establishes the semantic relationship. Markdown embedding makes the selected media directly available to execution surfaces that support image retrieval or multimodal interpretation. This reduces the need to infer, search for, substitute, or generate media, but rendering remains an execution responsibility.
+
 ### 4.5 Freshness
 
 Static declarations should not be treated as timeless authority for volatile facts such as stock, appointment availability, location-specific service availability, account eligibility, or price at checkout.
@@ -307,6 +316,8 @@ availability_basis: last_published_snapshot
 
 This lets an execution surface decide whether the value is usable, stale, or needs confirmation. OpenGEO v0.1 does not require inline bindings from static fields to live tools.
 
+`updated` refers to the last material semantic or contextual change, refresh, or publisher review. Regenerating an otherwise unchanged representation does not by itself constitute a material update. Publishers may use the optional `generated` field to identify representation-generation time and may add domain-relevant property-level freshness evidence where useful.
+
 ---
 
 ## 5. Context Declarations
@@ -315,11 +326,11 @@ The context layer defines publisher-owned interpretation context.
 
 Context is not merely narrative. It is the publisher-declared envelope that helps intelligent systems understand the intended interpretation mode of a resource.
 
-OpenGEO reserves the coherent `context.*` namespace for this purpose.
+OpenGEO reserves the coherent `context.*` namespace for this purpose. Property names written in dotted form, such as `context.intent`, identify paths in the abstract OpenGEO model. Serialisations express those paths according to their native conventions. The Markdown/YAML reference representation uses a nested `context` mapping.
 
 ### 5.1 Core Context Fields
 
-Reference context fields include:
+Reference context fields include the following. This table defines reference properties within the reserved `context` namespace; it is not a closed context vocabulary. Publishers and domain profiles MAY add contextual properties appropriate to their interpretation needs.
 
 | Field | Description |
 | :--- | :--- |
@@ -333,33 +344,59 @@ Reference context fields include:
 | `context.volatility` | Volatility class for facts likely to change. |
 | `context.provenance` | Contextual provenance or authority statement. |
 
-These fields may be extended by domain profiles.
+These fields may be extended by publishers and domain profiles. Unless a field or value is explicitly defined by the OpenGEO core, its vocabulary remains publisher-authored or profile-defined. Publishers should use stable, meaningful values consistently across related resources.
 
-`context.instructions` is the field most closely aligned with agent construction. It is intended to make it straightforward for an execution surface to derive an agent profile, system-instruction block, or equivalent configuration from `context.*` declarations alone.
+`context.instructions` is the field most closely aligned with agent construction. It contains publisher-authored contextual direction relevant to interpreting or acting upon a declared resource. It is intended to make it straightforward for an execution surface to derive an agent profile, system-instruction block, routing input, or equivalent configuration from `context.*` declarations.
 
-This does not make OpenGEO a prompt format. OpenGEO declares the publisher's intended interpretation envelope. The execution surface remains responsible for deciding whether and how those declarations become prompts, policies, tools, or agent configuration.
+This does not make OpenGEO a prompt format. `context.instructions` does not establish precedence over runtime policy, safety controls, system instructions, permissions, or a user's request. OpenGEO declares the publisher's intended interpretation envelope. The execution surface remains responsible for deciding whether and how those declarations become prompts, policies, tools, routing, or agent configuration.
 
 ### 5.2 Examples
 
 Commercial discovery:
 
 ```yaml
-context.intent: commercial_discovery
-context.tone: warm, helpful, concise
-context.sensitivity: low
-context.guidance: Compare attributes and preserve current offer qualifiers.
+context:
+  intent: commercial_discovery
+  tone:
+    - warm
+    - helpful
+    - concise
+  sensitivity: low
+  guidance: Compare attributes and preserve current offer qualifiers.
 ```
 
 Sensitive support:
 
 ```yaml
-context.intent: support
-context.tone: calm, compassionate, non-commercial
-context.sensitivity: high
-context.guidance: Prioritise service information, eligibility, human handoff, and safety qualifiers.
+context:
+  persona: palliative_care_support
+  intent: care_navigation
+  tone:
+    - calm
+    - compassionate
+    - clinically appropriate
+  sensitivity: high
+  guidance: Prioritise service information, eligibility, human handoff, and safety qualifiers.
+  instructions: >-
+    Prioritise clinical care and support services. Do not introduce
+    commercial products unless the user requests relevant product help.
 ```
 
-### 5.3 Execution Autonomy
+### 5.3 Context Inheritance and Crossover
+
+A participating site may declare default context in `geo.txt` or reference a reusable context profile. Resource-level context may then declare only the properties that differ from those defaults.
+
+Where context is composed:
+
+- resource-specific context takes precedence over corresponding site defaults;
+- a more specific declared context takes precedence over a more general inherited context;
+- a conflicting scalar, list, mapping, or prose property should be replaced as a complete property unless a profile defines another deterministic merge rule;
+- unresolved conflicts should remain visible to the consuming system rather than being silently guessed;
+- inheritance cycles are invalid.
+
+Publishers should declare persona crossover and contextual precedence explicitly where inappropriate crossover could affect interpretation. For example, a sensitive-care resource may declare that commercial assistance becomes relevant only when a user requests or clearly signals a product need. OpenGEO declares that context; the execution surface performs routing and enforcement. Assessment may evaluate whether the declared crossover was preserved.
+
+### 5.4 Execution Autonomy
 
 Context declarations inform execution surfaces. They do not prescribe behaviour.
 
@@ -370,6 +407,8 @@ The distinction is:
 - semantic layer defines meaning;
 - context layer defines interpretation;
 - execution layer defines behaviour.
+
+Context-driven configuration can allow one execution surface to adopt resource-appropriate personas and instructions while retaining its existing tools, permissions, policies, and session state. This may reduce unnecessary agent sprawl. Separate execution surfaces remain appropriate where permissions, regulation, data access, or operational isolation require them.
 
 ---
 
@@ -393,7 +432,7 @@ Other serialisations may include:
 
 ```markdown
 ---
-opengeo: 0.1
+opengeo: "0.1.0"
 type: product
 id: https://example.com/products/example-product
 canonical_url: https://example.com/products/example-product
@@ -413,9 +452,17 @@ appears_in:
   - https://example.com/categories/example-category.md
 related_advice:
   - https://example.com/advice/example-guide.md
-context.intent: commercial_discovery
-context.tone: clear, helpful, factual
-context.sensitivity: low
+context:
+  intent: commercial_discovery
+  tone:
+    - clear
+    - helpful
+    - factual
+  sensitivity: low
+  instructions: >-
+    Check current stock through the available inventory capability before
+    confirming availability. Use the canonical URL when linking the product
+    for a person; do not expose the Markdown representation URL.
 updated: 2026-07-05
 ---
 
@@ -428,8 +475,9 @@ Example Product is described by the publisher as a daily product for a specific 
 
 ### 6.2 Product Listing Example
 
-```yaml
-opengeo: 0.1
+```markdown
+---
+opengeo: "0.1.0"
 type: product-listing
 id: https://example.com/categories/example-category
 canonical_url: https://example.com/categories/example-category
@@ -442,16 +490,101 @@ product_catalog:
   - https://example.com/products/example-product.md
 related_advice:
   - https://example.com/advice/example-guide.md
-context.intent: commercial_discovery
-context.guidance: This listing presents a curated head. Use structured search where full-catalogue precision is required.
+context:
+  intent: commercial_discovery
+  guidance: This listing presents a curated head. Use structured search where full-catalogue precision is required.
+  instructions: >-
+    Use each product's canonical URL when linking it for a person. Do not
+    print or hyperlink a Markdown representation URL as a human destination.
 updated: 2026-07-05
+---
+
+# Example Category
+
+| Image | Product | Price | Rating | Reviews | Format | Pack |
+| :--- | :--- | ---: | ---: | ---: | :--- | :--- |
+| ![Example Product](https://cdn.example.com/products/example-product-front.jpg) | [Example Product](https://example.com/products/example-product) | GBP 12.99 | 4.5 | 218 | example format | 14 units |
 ```
 
-### 6.3 Synchronisation and Source of Truth
+A listing Semantic Twin may contain a compact comparison projection for all represented members. Once supplied to an execution surface, that projection can support conversational filtering, sorting, and comparison without repeated retrieval, provided the relevant attributes are present and sufficiently current. Member Twins may be fetched on demand when deeper detail is required. The comparison body uses canonical human-facing links and publisher-selected images; `product_catalog` retains machine-layer links for graph traversal.
+
+### 6.3 Palliative Care Service Example
+
+```markdown
+---
+opengeo: "0.1.0"
+type: service
+id: https://health.example.org/services/palliative-care
+canonical_url: https://health.example.org/services/palliative-care
+source_url: https://health.example.org/services/palliative-care
+publisher: Example University Hospital
+name: Palliative Care Service
+description: >-
+  Specialist support for adults living with a serious or life-limiting
+  illness, and for the people involved in their care.
+language: en-GB
+service_scope:
+  - symptom_management
+  - emotional_support
+  - care_planning
+  - family_and_carer_support
+referral:
+  required: true
+  routes:
+    - hospital_clinical_team
+    - general_practitioner
+has_policy:
+  - https://health.example.org/opengeo/policies/palliative-care-eligibility.md
+available_at:
+  - https://health.example.org/opengeo/locations/example-university-hospital.md
+related_services:
+  - https://health.example.org/opengeo/services/bereavement-support.md
+  - https://health.example.org/opengeo/services/spiritual-care.md
+context:
+  domain: palliative_care
+  persona: palliative_care_support
+  intent: care_navigation
+  tone:
+    - compassionate
+    - calm
+    - clinically appropriate
+  sensitivity: high
+  guidance: >-
+    Explain the service, referral routes, eligibility, and available human
+    support without implying that this declaration replaces clinical advice.
+  instructions: >-
+    Prioritise care and support services. Do not introduce commercial product
+    recommendations unless the user explicitly requests relevant product help.
+    Direct urgent or patient-specific clinical questions to an appropriate
+    qualified professional or emergency service.
+updated: 2026-07-11
+---
+
+# Palliative Care Service
+
+The Palliative Care Service supports adults living with a serious or
+life-limiting illness. The team works with patients, families, carers, and
+clinical teams to help manage symptoms, discuss care priorities, and connect
+people with appropriate practical and emotional support.
+
+## Accessing the service
+
+A referral is required. Hospital patients can ask a member of their clinical
+team for a referral. People receiving care in the community can speak with
+their general practitioner about the appropriate local route.
+
+Eligibility and referral details are available in the linked service policy.
+For urgent medical help, use the emergency and urgent-care services available
+in your location.
+```
+
+This example uses the same OpenGEO envelope without retail concepts. Properties such as `service_scope` and `referral` are publisher- or domain-defined semantic declarations. In the retail examples, properties such as `sku`, `price`, and `availability` have the same status: they are not universal OpenGEO core requirements. The core identifies and connects the resource; the publisher declares the truths appropriate to its domain; `context` declares the interpretation envelope.
+
+### 6.4 Synchronisation and Source of Truth
 
 Semantic Twins are not designed to be scraped or reverse-engineered from rendered HTML.
 
-They should be generated dynamically or built statically by the publisher's CMS, product information system, content platform, or CI/CD pipeline from the same source of truth as the human-facing HTML.
+They should be generated dynamically or built statically by the publisher's CMS, product information system, content platform, or CI/CD pipeline from an appropriate publisher-controlled source of truth. Twins may be public, authenticated, personalised, or dynamically composed. They may correspond to HTML, an application, document, voice service, physical artefact, assisted service, API, or another surface, and they may represent resources with no human-facing projection.
 
 HTML extraction may be used as a transitional migration technique where no structured source is available, but it should not be treated as the preferred architecture for OpenGEO adoption.
 
@@ -475,7 +608,7 @@ This establishes an explicit relationship between the human-facing projection an
 
 ### 7.2 `geo.txt`
 
-A participating site should publish:
+A conforming OpenGEO site MUST publish:
 
 ```text
 /.well-known/geo.txt
@@ -484,29 +617,40 @@ A participating site should publish:
 Example:
 
 ```yaml
-opengeo: 0.1
+opengeo: "0.1.0"
 participates: true
 publisher: Example Retailer
 canonical_url: https://example.com
 default_language: en-GB
-default_context.tone: clear, helpful, factual
 semantic_twin_root: https://example.com/opengeo/
 ard_catalog: https://example.com/ai-catalog.json
 representations:
   - semantic-twin+markdown
+context:
+  tone:
+    - clear
+    - helpful
+    - factual
+  instructions: >-
+    Use canonical human-facing URLs when linking resources for a person.
+    Do not expose machine representation URLs as human destinations.
 ```
 
-`geo.txt` is a site-wide participation declaration and default-context file. It is not an execution API.
+`geo.txt` is a site-wide participation declaration, discovery root, and default-context file. It is not an execution API. An individual OpenGEO resource MUST remain interpretable when retrieved independently of `geo.txt`.
+
+Publisher-controlled engines, agents, and MCP surfaces may guarantee that they consult the publisher's `geo.txt`. OpenGEO does not imply that every external engine discovers or honours it; discovery support remains engine-relative and observable.
+
+Consumers MAY compose `geo.txt` defaults with resource context. Resource-level declarations take precedence over corresponding site defaults. Where composition is ambiguous, the resource property replaces the conflicting default as a complete value.
 
 ### 7.3 `llms.txt`
 
 OpenGEO complements `llms.txt`.
 
-`llms.txt` can act as an orientation or root index for language models. It may link to `geo.txt`, Semantic Twins, advice pages, collections, services, and optional tool discovery.
+[Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt) can act as an orientation or root index for language models. It may link to `geo.txt`, Semantic Twins, advice pages, collections, services, and optional tool discovery.
 
 ### 7.4 ARD, MCP Discovery, and Future Discovery
 
-Agentic Resource Discovery, MCP discovery, `.well-known` resources, registries, and other mechanisms may point to OpenGEO resources.
+[Agentic Resource Discovery (ARD)](https://agenticresourcediscovery.org/) is developed by an open working group with participants including Google, Microsoft, and others. ARD, MCP discovery, `.well-known` resources, registries, and other mechanisms may point to OpenGEO resources. [NLWeb](https://github.com/microsoft/NLWeb), an open project developed by Microsoft, may expose site knowledge through natural-language and MCP-compatible interfaces.
 
 These systems own discovery and capability handshaking. OpenGEO owns semantic and contextual declarations.
 
@@ -551,9 +695,26 @@ If a publisher makes false, misleading, stale, or contradictory declarations, do
 
 As introduced in the conceptual model, Assurance is a cross-cutting concern of OpenGEO.
 
-It is not a fifth layer in the DSCE model. OpenGEO does not define a complete governance, compliance, or security framework. However, OpenGEO declarations are governance-relevant artefacts and SHOULD be published under controls for provenance, freshness, authorship, review, security, and equivalence with human-facing resources.
+It is not a fifth layer in the DSCE model. OpenGEO does not define a complete governance, compliance, or security framework. However, OpenGEO declarations are governance-relevant artefacts and SHOULD be published under controls for provenance, freshness, authorship, review, security, and cross-surface material equivalence where a corresponding surface exists.
 
-### 10.1 Provenance and Publisher Authority
+### 10.1 Assurance Vectors
+
+OpenGEO v0.1 identifies lightweight assurance vectors for evaluating the evidence around publisher declarations:
+
+| Vector | Assessment question | Supporting declarations or evidence |
+| :--- | :--- | :--- |
+| Authority | Who is responsible for the declaration? | `publisher`, resource identity, domain or source control. |
+| Provenance | Where did the declared meaning originate? | `source_url`, `canonical_url`, publisher generation records. |
+| Freshness | When was it materially refreshed or reviewed? | `updated`, optional `generated`, domain-relevant freshness evidence. |
+| Equivalence | Does it preserve material meaning across corresponding publisher-controlled surfaces? | Canonical references and cross-surface assessment. |
+| Consistency | Does it agree with related declarations and sources? | Graph relationships and comparison evidence. |
+| Completeness | Are material qualifications or relationships absent? | Resource and domain assessment. |
+| Ownership | Is maintenance responsibility identifiable? | Publisher governance and approval records. |
+| Auditability | Can the available declaration version be reconstructed? | `opengeo`, timestamps, hashes, logs, or change history. |
+
+These are vectors for assessing publisher-declared truth; they do not establish objective truth. OpenGEO v0.1 does not define assurance scores, certification thresholds, or mandatory execution behaviour.
+
+### 10.2 Provenance and Publisher Authority
 
 Declarations SHOULD identify the publisher, canonical source, source URL, update timestamp, and generation process where appropriate.
 
@@ -561,31 +722,45 @@ Where a declaration is generated from a CMS, product information system, knowled
 
 OpenGEO can declare publisher identity and provenance. Consuming systems remain responsible for verifying whether that identity and provenance are trustworthy.
 
-### 10.2 Freshness and Volatility
+### 10.3 Freshness and Volatility
 
 Declarations SHOULD include freshness metadata for facts likely to change, especially prices, offers, stock, availability, eligibility, location-specific service access, policy status, or safety-relevant information.
 
 Resources SHOULD declare review cadence, volatility, or freshness basis where stale interpretation could matter.
 
-### 10.3 Human/Machine Equivalence
+### 10.4 Cross-Surface Material Equivalence
 
-Machine-facing projections SHOULD preserve the same material meaning as the human-facing resource.
+Where an OpenGEO declaration represents or accompanies information available through another publisher-controlled surface, it SHOULD preserve materially equivalent meaning. A corresponding surface may be HTML, an application, document, voice service, physical artefact, assisted service, API, or another human- or machine-accessible projection.
 
-This is especially important for transactional, policy, advisory, regulated, medical, financial, or safety-relevant content. A Semantic Twin should not quietly add, remove, or materially change claims that affect user understanding, eligibility, risk, price, service access, or product identity.
+Equivalence does not require identical content, ordering, pagination, interaction, presentation, or personalisation. It requires that material claims do not contradict or misleadingly omit qualifications present on the corresponding publisher-controlled surface. This is especially important for transactional, policy, advisory, regulated, medical, financial, or safety-relevant content.
 
-### 10.4 Review and Ownership
+An OpenGEO declaration MAY represent an authenticated, personalised, dynamically composed, or publisher-controlled resource with no corresponding human-facing projection. Such resources SHOULD declare sufficient provenance, authority, access scope, and freshness for their intended use. OpenGEO does not require canonical URLs containing sensitive or ephemeral state.
+
+### 10.5 Review and Ownership
 
 Publishers SHOULD define ownership for creating, reviewing, approving, updating, and retiring OpenGEO declarations.
 
 For higher-risk domains, review SHOULD include the same organisational functions that govern the equivalent human-facing material, such as product, content, legal, clinical, compliance, brand, security, or engineering teams.
 
-### 10.5 Security Considerations
+Implementations SHOULD assign accountable organisational ownership across Discovery, Semantic, Context, Execution, and Assurance. OpenGEO does not prescribe job titles; organisations should map each responsibility to their existing executive and operational structures.
 
-OpenGEO declarations MUST NOT expose secrets, credentials, private keys, private access tokens, internal prompts, unpublished offers, private business rules, sensitive personal data, unsafe operational details, or internal-only system instructions.
+| Area | Executive accountability may include | Operational ownership may include |
+| :--- | :--- | :--- |
+| Discovery | Digital, technology, information, or channel leadership. | Web platform, search/GEO, architecture, integration, and channel teams. |
+| Semantic | Digital, information, data, product, service, or domain leadership. | CMS and content platforms, knowledge architecture, data engineering, product or service data, and domain source owners. |
+| Context | Brand, customer, service, clinical, academic, policy, communications, or domain leadership. | Context Architecture, content strategy, experience design, domain experts, service owners, and governance partners. |
+| Execution | Technology, information, digital, product, or AI leadership. | AI platforms, agent engineering, product engineering, security, safety, and runtime operations. |
+| Assurance | Risk, compliance, legal, audit, governance, clinical or professional leadership, and the CISO. | Risk, compliance, audit, security, privacy, clinical or professional governance, brand assurance, and evaluation teams. |
 
-Implementations SHOULD treat machine-facing declarations as public web artefacts unless access controls explicitly state otherwise.
+Context Architecture is the role or distributed function responsible for translating publisher intent, domain sensitivity, service expectations, and interpretation requirements into governed OpenGEO context declarations. Semantic publishing is the role or function responsible for generating and maintaining declarations from publisher-controlled sources of truth while preserving provenance, relationships, freshness, and cross-surface material equivalence.
 
-### 10.6 Spoofing and Trust
+### 10.6 Security Considerations
+
+Public OpenGEO declarations MUST NOT expose secrets, credentials, private keys, private access tokens, internal prompts, unpublished offers, private business rules, sensitive personal data, unsafe operational details, or internal-only system instructions.
+
+Implementations SHOULD treat machine-facing declarations as public web artefacts unless access controls explicitly state otherwise. Authenticated or personalised declarations require appropriate authorisation and MUST NOT be shared or cached across subjects in a way that exposes one subject's information to another.
+
+### 10.7 Spoofing and Trust
 
 Consumers SHOULD NOT assume that a discovered declaration is trustworthy merely because it exists.
 
@@ -593,7 +768,7 @@ Discovery can reveal a declaration. It does not by itself prove authority, accur
 
 OpenGEO should remain compatible with external trust mechanisms, including domain control, `.well-known` proofs, signed manifests, provenance records, ARD trust manifests, platform verification, and future identity or attestation systems.
 
-### 10.7 Auditability
+### 10.8 Auditability
 
 Implementations SHOULD preserve enough evidence to reconstruct which declaration version was available at a given time.
 
@@ -603,7 +778,7 @@ Useful audit evidence may include version identifiers, timestamps, source hashes
 
 ## 11. Acknowledgements
 
-OpenGEO builds in alignment with the open-agentic web movement, including Jeremy Howard and Answer.AI's `llms.txt` proposal.
+OpenGEO acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), which helped establish the case for publisher-curated, LLM-friendly web resources.
 
 OpenGEO treats `llms.txt` as a complementary orientation and root-index convention, while OpenGEO defines resource-level semantic and contextual declarations.
 
@@ -611,7 +786,22 @@ OpenGEO treats `llms.txt` as a complementary orientation and root-index conventi
 
 ## 12. Versioning and Governance
 
-This document is a working draft of OpenGEO v0.1.
+This document is a working draft of OpenGEO `0.1.0`.
+
+OpenGEO uses Semantic Versioning for its normative semantic model. The required `opengeo` property identifies the semantic-model version used by a declaration; it does not identify a serialisation, discovery mechanism, or execution-surface version.
+
+- Before `1.0.0`, minor releases may introduce incompatible changes.
+- From `1.0.0`, patch releases contain compatible corrections, minor releases contain backward-compatible additions, and major releases may introduce incompatible semantic changes.
+- Version values MUST be expressed as quoted strings in YAML, for example `opengeo: "0.1.0"`.
+- Consumers SHOULD preserve unknown properties where possible and MUST NOT silently reinterpret unsupported properties.
+
+### 12.1 Extensibility and Contribution
+
+Publishers may add semantic and contextual properties appropriate to their resources and domains without mandatory namespacing. OpenGEO does not assign universal meaning to properties it does not define.
+
+Publishers and communities may develop reusable profiles or namespaces where shared interoperability warrants them and may propose broadly useful concepts for inclusion in the OpenGEO core. Core additions should demonstrate shared need and satisfy the field-placement principle: the declaration belongs in OpenGEO when the publisher knows it better than the execution surface.
+
+The OpenGEO core should remain deliberately small and should avoid retroactively redefining common publisher-domain properties. Unknown publisher and profile properties should be preserved where possible.
 
 The specification is intended to evolve as an open, community-reviewable standard. The author retains the right to be credited as the originator of the OpenGEO specification in derivative specifications, implementations, or standardisation processes.
 
