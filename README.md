@@ -223,6 +223,8 @@ OpenGEO does not provide AI governance, compliance, or authentication by itself.
 
 OpenGEO acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), which helped establish the case for publisher-curated, LLM-friendly web resources. OpenGEO builds on that direction with resource-level semantic and contextual declarations.
 
+[Google Cloud's Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) reflects related convergence around producer-owned, portable Markdown and YAML knowledge that remains independent of consuming agents and platforms. OKF and OpenGEO have distinct scopes; no formal compatibility or endorsement is implied.
+
 ## Licence
 
 The specification and manifesto text are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0), with attribution to Zahid Saleem.

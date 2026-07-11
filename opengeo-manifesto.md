@@ -88,7 +88,7 @@ OpenGEO is intentionally modest. It provides a common semantic and contextual fo
 | A complement to discovery systems | A replacement for ARD, MCP, or `llms.txt` |
 | Opt-in by design | A moderation or enforcement system |
 
-OpenGEO sits within a broader open-agentic web movement. It acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), complements [ARD](https://agenticresourcediscovery.org/), an open working-group specification with participants including Google, and can be consumed through execution systems such as [Microsoft's NLWeb](https://github.com/microsoft/NLWeb).
+OpenGEO sits within a broader open-agentic web movement. It acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), complements [ARD](https://agenticresourcediscovery.org/), an open working-group specification with participants including Google, and can be consumed through execution systems such as [Microsoft's NLWeb](https://github.com/microsoft/NLWeb). [Google Cloud's Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) reflects related convergence around producer-owned, portable Markdown and YAML knowledge, while retaining a distinct scope.
 
 Trust, verification, ranking, and policy remain the responsibility of consuming systems, platforms, regulators, and users.
 

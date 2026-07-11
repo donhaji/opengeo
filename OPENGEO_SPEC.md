@@ -782,6 +782,8 @@ OpenGEO acknowledges [Jeremy Howard and Answer.AI's `llms.txt` proposal](https:/
 
 OpenGEO treats `llms.txt` as a complementary orientation and root-index convention, while OpenGEO defines resource-level semantic and contextual declarations.
 
+OpenGEO also acknowledges [Google Cloud's Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing), which reflects parallel movement toward producer-owned, portable Markdown and YAML knowledge that remains independent of consuming agents and platforms. OKF is a related knowledge format, not an OpenGEO discovery mechanism or a claim of formal compatibility.
+
 ---
 
 ## 12. Versioning and Governance
