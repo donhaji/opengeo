@@ -27,6 +27,10 @@ The specification is based on one architectural principle:
 
 Discovery mechanisms may find OpenGEO resources. Execution surfaces may interpret, rank, reason, retrieve, render, or act on them. OpenGEO itself defines the publisher-owned semantic and contextual declarations that sit between discovery and execution.
 
+### Normative Language
+
+The key words **MUST**, **MUST NOT**, **REQUIRED**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **MAY**, and **OPTIONAL** in this document are to be interpreted as described in [BCP 14](https://www.rfc-editor.org/info/bcp14) when, and only when, they appear in all capitals.
+
 ---
 
 ## 1. Motivation
@@ -240,26 +244,32 @@ OpenGEO is resource-level rather than page-only. A declared resource may corresp
 
 Where a resource has a human-facing URL, the OpenGEO representation should reference that URL. Where a resource has no single human-facing page, the publisher may still declare it as a semantic resource.
 
-### 4.2 Core Semantic Fields
+### 4.2 Base Declaration Properties
 
-The reference representation uses the following core fields. This table defines the OpenGEO core semantic fields and their requirements; it is not a closed vocabulary. Publishers MAY add semantic properties appropriate to their resources and domains.
+The following properties define the base OpenGEO declaration vocabulary. They cover resource meaning, identity, declaration metadata, provenance, and canonical media. The Requirement column is normative:
+
+- **REQUIRED** properties MUST be present in every OpenGEO declaration.
+- **RECOMMENDED** properties SHOULD be present when they are applicable and available. Their omission does not invalidate a declaration.
+- **OPTIONAL** properties MAY be included where they add relevant information.
+
+The properties in this table are standardised, but they do not form a closed vocabulary. Publishers and domain profiles MAY add properties appropriate to their resources. The minimum valid OpenGEO declaration consists of all properties marked REQUIRED; implementations MUST NOT treat RECOMMENDED or OPTIONAL properties as mandatory.
 
 | Field | Requirement | Description |
 | :--- | :--- | :--- |
-| `opengeo` | required | Semantic Version of the OpenGEO semantic model used by the declaration. |
-| `type` | required | Resource type, such as `organisation`, `brand`, `product`, `product-listing`, `service`, `location`, `article`, `collection`, `offer`, or `policy`. |
-| `id` | required | Stable absolute URL identifying the semantic resource. |
-| `name` | required | Human-readable resource name. |
-| `description` | required | Concise resource description. |
-| `updated` | required | Date or timestamp when material semantic or contextual content was last changed, refreshed, or reviewed. |
-| `generated` | optional | Date or timestamp when this particular representation was produced. It does not replace `updated`. |
-| `canonical_url` | recommended | Human-facing canonical URL, if one exists. |
-| `source_url` | recommended | Publisher source from which the declaration was generated. |
-| `publisher` | recommended | Organisation responsible for the declaration. |
-| `language` | recommended | Language tag, such as `en-GB`. |
-| `primary_image` | optional | Canonical primary media URL. |
-| `image_alt` | optional | Descriptive alt text tying media to resource identity. |
-| `same_as` | optional | Equivalent public identifiers or profiles. |
+| `opengeo` | REQUIRED | Semantic Version of the OpenGEO semantic model used by the declaration. |
+| `type` | REQUIRED | Resource type, such as `organisation`, `brand`, `product`, `product-listing`, `service`, `location`, `article`, `collection`, `offer`, or `policy`. |
+| `id` | REQUIRED | Stable absolute URL identifying the semantic resource. |
+| `name` | REQUIRED | Human-readable resource name. |
+| `description` | REQUIRED | Concise resource description. |
+| `updated` | REQUIRED | Date or timestamp when material semantic or contextual content was last changed, refreshed, or reviewed. |
+| `generated` | OPTIONAL | Date or timestamp when this particular representation was produced. It does not replace `updated`. |
+| `canonical_url` | RECOMMENDED | Human-facing canonical URL, if one exists. |
+| `source_url` | RECOMMENDED | Publisher source from which the declaration was generated. |
+| `publisher` | RECOMMENDED | Organisation responsible for the declaration. |
+| `language` | RECOMMENDED | Language tag, such as `en-GB`. |
+| `primary_image` | OPTIONAL | Canonical primary media URL. |
+| `image_alt` | OPTIONAL | Descriptive alt text tying media to resource identity. |
+| `same_as` | OPTIONAL | Equivalent public identifiers or profiles. |
 
 ### 4.3 Graph Relationships
 
