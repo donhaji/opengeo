@@ -3,58 +3,58 @@ import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.j
 
 const outcomes = {
   1: {
-    problemFace: "CAN AI FIND THE RIGHT RESOURCE?",
-    solutionFace: "MAKE THE RIGHT RESOURCE DISCOVERABLE",
+    problemFace: "WHY CAN'T AI FIND OUR BEST INFORMATION?",
+    solutionFace: "SHOW AI WHERE THE OFFICIAL ANSWER LIVES",
     activeLayers: ["D"],
     question: "Why can't AI systems find our authoritative content?",
     truth: "Publishing accurate information does not guarantee that every engine can discover the right representation.",
     response: "Discovery.",
-    guidance: "Expose the representation through recognised mechanisms and assess which engines can reach it."
+    guidance: "Help AI find the publisher's official page or agent-legible representation."
   },
   2: {
-    problemFace: "WHO DEFINES THE FACTS?",
-    solutionFace: "DECLARE THE CANONICAL SOURCE",
+    problemFace: "WHO IS AI TRUSTING ABOUT US?",
+    solutionFace: "MAKE US THE SOURCE OF OUR OWN FACTS",
     activeLayers: ["S"],
     question: "Who defines the facts about our organisation?",
     truth: "AI systems may reconstruct identity and facts from whichever fragments they retrieve and trust.",
     response: "Semantic.",
-    guidance: "Publish canonical identity, facts, provenance, and relationships at the resource level."
+    guidance: "Publish authoritative facts and identify where they came from."
   },
   3: {
-    problemFace: "CAN AI TELL IF THIS IS CURRENT?",
-    solutionFace: "DECLARE IT; EVIDENCE IT",
+    problemFace: "WHY IS AI USING OLD INFORMATION?",
+    solutionFace: "SHOW WHEN OUR INFORMATION LAST CHANGED",
     activeLayers: ["S"],
     question: "Why is old information being presented as current?",
     truth: "A correct fact can become misleading when its source, timestamp, or volatility is unclear.",
     response: "Semantic with Assurance.",
-    guidance: "Declare the canonical source and freshness evidence so staleness can be evaluated."
+    guidance: "State when information changed so consuming systems can judge whether it remains current."
   },
   4: {
     problemFace: "WHY IS AI SHOWING THE WRONG IMAGE?",
-    solutionFace: "DECLARE IT; TEST THE RENDERING",
+    solutionFace: "SHOW AI WHICH IMAGE IS OFFICIAL",
     activeLayers: ["S", "E"],
     question: "Why is AI substituting or generating the wrong image?",
     truth: "A visible image is not necessarily understood as the canonical media for a specific resource.",
     response: "Semantic and Execution.",
-    guidance: "Semantic declares the canonical image; Execution determines whether it is preserved and rendered."
+    guidance: "Identify the official image for each resource, then assess what AI actually displays."
   },
   5: {
-    problemFace: "WHY DOES THE TONE FEEL WRONG?",
-    solutionFace: "DECLARE THE INTENDED CONTEXT",
+    problemFace: "WHY DOES AI SOUND WRONG HERE?",
+    solutionFace: "EXPLAIN THE TONE THIS MOMENT NEEDS",
     activeLayers: ["C"],
     question: "Why is AI using the wrong tone for this journey?",
     truth: "Facts alone do not communicate the intended tone, sensitivity, guidance, or human handoff.",
     response: "Context.",
-    guidance: "Declare the interpretation envelope while leaving final behaviour to the execution surface."
+    guidance: "Declare the tone, sensitivity, and guidance that the situation requires."
   },
   6: {
-    problemFace: "WHO REPRESENTS US TO AI?",
-    solutionFace: "PUBLISHER DECLARES THE MEANING",
+    problemFace: "WHO GETS TO DEFINE US TO AI?",
+    solutionFace: "DEFINE OURSELVES BEFORE AI GUESSES",
     activeLayers: ["D", "S", "C", "E"],
     question: "Who represents your organisation to AI?",
     truth: "Without a direct declaration, intelligent systems reconstruct it from fragments.",
     response: "The publisher declares the meaning.",
-    guidance: "OpenGEO makes meaning and context explicit before execution begins."
+    guidance: "Publish organisational meaning and context before AI reconstructs them from third-party fragments."
   }
 };
 

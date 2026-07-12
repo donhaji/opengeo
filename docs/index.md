@@ -145,9 +145,9 @@ The game is an explanatory device. It is not an audit score, random recommendati
 
 ### Roll 1: Discovery
 
-**Problem face:** `CAN AI FIND THE RIGHT RESOURCE?`
+**Problem face:** `WHY CAN'T AI FIND OUR BEST INFORMATION?`
 
-**Solution face:** `MAKE THE RIGHT RESOURCE DISCOVERABLE`
+**Solution face:** `SHOW AI WHERE THE OFFICIAL ANSWER LIVES`
 
 **Active checkpoint:** Discovery (`D`)
 
@@ -155,13 +155,13 @@ The game is an explanatory device. It is not an audit score, random recommendati
 
 **Hard truth:** Publishing accurate information does not guarantee that every engine can discover the right representation.
 
-**OpenGEO response:** Expose the representation through recognised mechanisms and assess which engines can reach it.
+**OpenGEO response:** Help AI find the publisher's official page or agent-legible representation.
 
 ### Roll 2: Canonical Meaning
 
-**Problem face:** `WHO DEFINES THE FACTS?`
+**Problem face:** `WHO IS AI TRUSTING ABOUT US?`
 
-**Solution face:** `DECLARE THE CANONICAL SOURCE`
+**Solution face:** `MAKE US THE SOURCE OF OUR OWN FACTS`
 
 **Active checkpoint:** Semantic (`S`)
 
@@ -169,13 +169,13 @@ The game is an explanatory device. It is not an audit score, random recommendati
 
 **Hard truth:** AI systems may reconstruct identity and facts from whichever fragments they retrieve and trust.
 
-**OpenGEO response:** Publish canonical identity, facts, provenance, and relationships at the resource level.
+**OpenGEO response:** Publish authoritative facts and identify where they came from.
 
 ### Roll 3: Freshness
 
-**Problem face:** `CAN AI TELL IF THIS IS CURRENT?`
+**Problem face:** `WHY IS AI USING OLD INFORMATION?`
 
-**Solution face:** `DECLARE IT; EVIDENCE IT`
+**Solution face:** `SHOW WHEN OUR INFORMATION LAST CHANGED`
 
 **Active checkpoint:** Semantic (`S`), governed by Assurance.
 
@@ -183,13 +183,13 @@ The game is an explanatory device. It is not an audit score, random recommendati
 
 **Hard truth:** A correct fact can become misleading when its source, timestamp, or volatility is unclear.
 
-**OpenGEO response:** Declare the canonical source and freshness evidence so staleness can be evaluated.
+**OpenGEO response:** State when information changed so consuming systems can judge whether it remains current.
 
 ### Roll 4: Canonical Media
 
 **Problem face:** `WHY IS AI SHOWING THE WRONG IMAGE?`
 
-**Solution face:** `DECLARE IT; TEST THE RENDERING`
+**Solution face:** `SHOW AI WHICH IMAGE IS OFFICIAL`
 
 **Active checkpoints:** Semantic (`S`) and Execution (`E`).
 
@@ -197,13 +197,13 @@ The game is an explanatory device. It is not an audit score, random recommendati
 
 **Hard truth:** A visible image is not necessarily understood as the canonical media for a specific resource.
 
-**OpenGEO response:** Semantic declares the canonical image; Execution determines whether it is preserved and rendered.
+**OpenGEO response:** Identify the official image for each resource, then assess what AI actually displays.
 
 ### Roll 5: Context
 
-**Problem face:** `WHY DOES THE TONE FEEL WRONG?`
+**Problem face:** `WHY DOES AI SOUND WRONG HERE?`
 
-**Solution face:** `DECLARE THE INTENDED CONTEXT`
+**Solution face:** `EXPLAIN THE TONE THIS MOMENT NEEDS`
 
 **Active checkpoint:** Context (`C`)
 
@@ -211,13 +211,13 @@ The game is an explanatory device. It is not an audit score, random recommendati
 
 **Hard truth:** Facts alone do not communicate the intended tone, sensitivity, guidance, or human handoff.
 
-**OpenGEO response:** Declare the interpretation envelope while leaving final behaviour to the execution surface.
+**OpenGEO response:** Declare the tone, sensitivity, and guidance that the situation requires.
 
 ### Roll 6: Publisher Control
 
-**Problem face:** `WHO REPRESENTS US TO AI?`
+**Problem face:** `WHO GETS TO DEFINE US TO AI?`
 
-**Solution face:** `PUBLISHER DECLARES THE MEANING`
+**Solution face:** `DEFINE OURSELVES BEFORE AI GUESSES`
 
 **Active checkpoints:** Discovery, Semantic, Context, and Execution as a complete interpretation chain.
 
@@ -225,7 +225,7 @@ The game is an explanatory device. It is not an audit score, random recommendati
 
 **Hard truth:** Without a direct declaration, intelligent systems reconstruct it from fragments.
 
-**OpenGEO response:** The publisher declares meaning and context; OpenGEO makes that information explicit before execution begins.
+**OpenGEO response:** Publish organisational meaning and context before AI reconstructs them from third-party fragments.
 
 ## Semantic Twin Reference Implementation
 
