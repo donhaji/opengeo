@@ -233,7 +233,9 @@ A Semantic Twin is the v0.1 reference implementation of OpenGEO. It is a machine
 
 The Semantic Twin is not the specification itself. OpenGEO owns semantics and context, not syntax.
 
-Markdown with YAML front matter is the v0.1 reference representation because it is inspectable, easy to publish, easy to generate, and legible to current language models. Other projections may include JSON, APIs, MCP responses, graph stores, or future serialisations.
+A Semantic Projection is a publisher-defined bounded representation of a canonical resource. It may remove irrelevant information or include selected related content for a particular inference or experience while preserving canonical meaning, identity, and provenance.
+
+The canonical semantic model is projected into an appropriate bounded representation, which may then be published as a Semantic Twin, JSON, an API or MCP response, or another representation of the shared semantic model. Markdown with YAML front matter is the v0.1 reference representation because it is inspectable, easy to publish, easy to generate, and legible to current language models.
 
 This resource is the Semantic Twin of:
 
