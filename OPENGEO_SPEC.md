@@ -596,6 +596,10 @@ A **Semantic Projection** is a publisher-defined, bounded representation of a ca
 
 A Semantic Projection preserves the canonical meaning, identity, and provenance of the resource while presenting only the bounded representation appropriate to its declared purpose. It is a derived artefact, not a separate source of truth.
 
+Semantic Projections support efficient inference and experience delivery. A reduced projection can remove irrelevant material and lower context size. An extended projection can pre-compose selected related declarations and context, reducing repeated discovery, graph traversal, retrieval, tool calls, and context assembly. This can reduce the number of network and reasoning hops required by latency-sensitive AI experiences.
+
+Implementations should balance these benefits against representation size, freshness, provenance, duplication, and the risk of omitting information required for the intended purpose. A Semantic Projection optimises access to publisher-declared meaning; it does not replace the canonical resources from which that meaning is derived.
+
 A Semantic Projection:
 
 - MUST remain materially consistent with the canonical resource;
