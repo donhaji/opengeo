@@ -588,9 +588,25 @@ For urgent medical help, use the emergency and urgent-care services available
 in your location.
 ```
 
-This example uses the same OpenGEO envelope without retail concepts. Properties such as `service_scope` and `referral` are publisher- or domain-defined semantic declarations. In the retail examples, properties such as `sku`, `price`, and `availability` have the same status: they are not universal OpenGEO core requirements. The core identifies and connects the resource; the publisher declares the truths appropriate to its domain; `context` declares the interpretation envelope.
+This example uses the same OpenGEO envelope without retail concepts. Properties such as `service_scope` and `referral` are publisher- or domain-defined semantic declarations. In the retail examples, properties such as `sku`, `price`, and `availability` have the same status: they are not universal OpenGEO base requirements. The base declaration identifies and connects the resource; the publisher declares the truths appropriate to its domain; `context` declares the interpretation envelope.
 
-### 6.4 Synchronisation and Source of Truth
+### 6.4 Semantic Projection
+
+A **Semantic Projection** is a publisher-defined, bounded representation of a canonical resource. It may be generated dynamically either to reduce the resource's scope by omitting information unnecessary for an intended inference or experience, or to extend it with selected related content and context needed for that purpose.
+
+A Semantic Projection preserves the canonical meaning, identity, and provenance of the resource while presenting only the bounded representation appropriate to its declared purpose. It is a derived artefact, not a separate source of truth.
+
+A Semantic Projection:
+
+- MUST remain materially consistent with the canonical resource;
+- MUST NOT introduce contradictory publisher claims or obscure the identity of the canonical resource;
+- SHOULD preserve the provenance of the canonical resource and any selected related material;
+- SHOULD preserve enough metadata to identify the canonical resource, the basis on which content was selected or composed, and when the projection was generated;
+- MAY be expressed as a Semantic Twin, API or MCP response, or another representation of the same OpenGEO semantic model.
+
+The publisher controls the projection's composition and declared purpose. Consuming systems remain responsible for deciding whether and how to use it during inference or execution.
+
+### 6.5 Synchronisation and Source of Truth
 
 Semantic Twins are not designed to be scraped or reverse-engineered from rendered HTML.
 
