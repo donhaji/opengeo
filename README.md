@@ -12,6 +12,8 @@ OpenGEO gives publishers a way to declare the meaning they know best: who they a
 
 GEO is the practice. OpenGEO is the specification.
 
+Much of current GEO practice focuses on visibility in generative answers through content structure, evidence, entities, and citation likelihood. OpenGEO shares the premise that generative engines mediate organisational meaning, but addresses an earlier concern: what the publisher can declare before a runtime interprets or recommends anything. OpenGEO distinguishes semantic declarations—identity, facts, relationships, provenance, and canonical media—from contextual declarations such as tone, intent, sensitivity, guidance, and persona. It places those interpretation signals in the reserved `context.*` namespace as part of the OpenGEO semantic contract, rather than leaving them implicit in marketing prose. Visibility still matters; OpenGEO defines who owns meaning and interpretation context before an engine acts.
+
 For example, a publisher can declare that:
 
 - a page is an official support journey, not a commercial product page;
