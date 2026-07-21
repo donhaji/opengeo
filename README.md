@@ -1,14 +1,16 @@
 # OpenGEO
 
-> An open specification for publishing canonical organisational meaning and context to intelligent systems.
+> An open specification and extensible architecture for publisher-owned semantic interoperability with intelligent systems.
 
 OpenGEO is about **Generative Engine Optimisation and AI interpretation**, not geolocation, maps, or geographic data.
 
 OpenGEO can describe a physical location as a resource, but it is not a geospatial or mapping standard.
 
-AI systems increasingly answer questions about organisations before a user reaches the organisation's own website. Those answers may describe products, services, policies, advice, offers, locations, media, and brand intent.
+OpenGEO gives publishers an architecture for declaring the canonical knowledge they know best: who they are, what their resources are, how those resources relate, and what context should shape their interpretation. It connects that publisher-owned knowledge to intelligent systems through **Discovery, Semantic, Context, and Execution (DSCE)**, with Assurance oversight across every checkpoint.
 
-OpenGEO gives publishers a way to declare the meaning they know best: who they are, what their resources are, how those resources relate, what context matters, and what should be treated as current, sensitive, canonical, or authoritative.
+The architecture separates the stable publisher contract from the technologies that carry or consume it. A publisher maintains canonical knowledge and can expose purpose-built **Semantic Projections** for different experiences, channels, or inference needs. Discovery mechanisms locate those projections; semantic declarations preserve identity, facts, relationships, media, and provenance; contextual declarations express intent, tone, audience, sensitivity, and guidance; execution remains the responsibility of the consuming system.
+
+OpenGEO defines the architecture, not a mandatory implementation stack. It provides a recommended reference path while allowing existing and future discovery standards, representation formats, context signals, AI runtimes, and agent frameworks to fit the same model.
 
 GEO is the practice. OpenGEO is the specification.
 
@@ -86,13 +88,12 @@ Assessment asks the same questions engine by engine: can this engine find it, un
 
 ## OpenGEO Is
 
-- An open specification for semantic and contextual declarations
-- Publisher-owned
-- Resource-level
-- Implementation-agnostic
-- Execution-independent
-- Compatible with [ARD](https://agenticresourcediscovery.org/), [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), [Microsoft's NLWeb](https://github.com/microsoft/NLWeb), MCP discovery, APIs, and other discovery or execution systems
-- Opt-in by design
+- An open specification and extensible architecture for publisher-owned semantic interoperability
+- A DSCE model mapping how publisher knowledge is located, represented, contextualised, and activated
+- A semantic contract connecting canonical knowledge to purpose-built Semantic Projections
+- A recommended reference path, not a mandatory technology stack
+- Resource-level, implementation-agnostic, execution-independent, and opt-in by design
+- Compatible with [ARD](https://agenticresourcediscovery.org/), [Jeremy Howard and Answer.AI's `llms.txt` proposal](https://www.answer.ai/posts/2024-09-03-llmstxt), [Microsoft's NLWeb](https://github.com/microsoft/NLWeb), HTML alternate links, JSON-LD, OKF, APIs, MCP, A2A, and future discovery, representation, or execution systems
 
 ## OpenGEO Is Not
 
@@ -133,9 +134,17 @@ context:
 
 `context.instructions` is publisher-authored contextual direction, not a prompt format or an override of runtime policy. A shared execution surface may use resource-specific context to adopt an appropriate persona and interpretation mode without requiring a separately implemented agent for every resource or journey.
 
+## Canonical Knowledge and Semantic Projections
+
+OpenGEO starts from publisher-controlled canonical knowledge rather than a format created for one platform or runtime. That shared semantic model can support human-facing websites, desktop and mobile experiences, spatial interfaces, and machine-facing representations without creating a different source of truth for each channel.
+
+A **Semantic Projection** is a bounded, publisher-defined view of that canonical knowledge for a particular inference or experience. It may reduce scope by omitting irrelevant material or extend the resource with selected related content and context. A projection preserves canonical meaning, identity, and provenance; it is a derived view, not a new source of truth.
+
+This lets publishers provide the context an intelligent system needs without sending an entire catalogue, knowledge graph, or website through every interaction. The representation may vary while the semantic contract remains stable.
+
 ## Semantic Twin Reference Implementation
 
-A Semantic Twin is the reference implementation of OpenGEO.
+A Semantic Twin is the v0.1 reference implementation of OpenGEO and one way to deliver a machine-facing Semantic Projection.
 
 It is one practical way to publish OpenGEO declarations today. OpenGEO owns semantics and context, not syntax.
 
