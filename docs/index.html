@@ -305,6 +305,20 @@
       font-weight: 700;
     }
 
+    .architecture-diagram {
+      margin: 32px 0 8px;
+    }
+
+    .architecture-diagram a,
+    .architecture-diagram img {
+      display: block;
+      width: 100%;
+    }
+
+    .architecture-diagram img {
+      height: auto;
+    }
+
     .steps {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -642,6 +656,11 @@
       <div class="wrap">
         <h2 class="section-heading">DSCE with Assurance Oversight</h2>
         <p class="section-copy">DSCE, pronounced "dice", describes how intelligent systems locate, understand, contextualise, and act upon publisher-controlled information. OpenGEO primarily standardises declarations across Discovery, Semantic, and Context. Execution is informed by those declarations but remains outside the specification.</p>
+        <figure class="architecture-diagram">
+          <a href="./assets/open_geo_architecture.svg" aria-label="Open the OpenGEO architecture diagram at full size">
+            <img src="./assets/open_geo_architecture.svg" width="1600" height="920" loading="lazy" alt="OpenGEO architecture showing the DSCE interpretation chain, Assurance oversight, Semantic Projections, and compatible discovery and execution mechanisms.">
+          </a>
+        </figure>
         <p class="context-proof">Select any checkpoint card to see who owns it. Select it again to return to the model.</p>
         <div id="dsce-accountability">
           <div class="steps four dsce-cards">
