@@ -24,6 +24,10 @@ The core principle of OpenGEO is publisher sovereignty over machine-readable mea
 
 GEO is the practice. OpenGEO is the open specification.
 
+## Relationship to Current GEO Practice
+
+Much of current GEO practice focuses on visibility in generative answers. That work considers content structure, evidence, entities, citation likelihood, and how readily models can retrieve, quote, or recommend published material. OpenGEO shares the premise that generative engines mediate organisational meaning, but does not treat GEO as share-of-answer optimisation alone. It distinguishes semantic declarations—identity, facts, relationships, provenance, and canonical media—from contextual declarations such as tone, intent, sensitivity, guidance, and persona. OpenGEO places those interpretation signals in the reserved `context.*` namespace as part of its semantic contract, rather than leaving them implicit in descriptive prose. Visibility still matters; OpenGEO addresses the earlier question of who owns meaning and interpretation context before an engine acts.
+
 ## The Publisher-Execution Boundary
 
 OpenGEO begins with a boundary.
