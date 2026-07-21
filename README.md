@@ -60,6 +60,8 @@ Discovery, Semantic, Context, and Execution describe how intelligent systems loc
 
 Assurance is not a fifth layer. It is the oversight concern around the chain: provenance, authorship, freshness, security, auditability, ownership, governance, equivalence, and operational control.
 
+[![OpenGEO architecture showing the DSCE interpretation chain, Assurance oversight, Semantic Projections, and compatible discovery and execution mechanisms](docs/assets/open_geo_architecture.svg)](docs/assets/open_geo_architecture.svg)
+
 ```text
                  ASSURANCE / OVERSIGHT
  provenance | authorship | freshness | security | auditability | ownership
